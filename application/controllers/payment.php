@@ -4,13 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Payment extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
-		//call model inti 
+		//call model inti
 		$this->load->model('initdata_model');
 		$this->load->library('pagination');
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('my_upload');
 		$this->load->library('upload');
-		 
+		 session_start();
 	}
 
 	public function index()
@@ -20,15 +20,15 @@ class Payment extends CI_Controller {
 			redirect('dealer','refresh');
 
 		}
-                	
 
-		//header meta tag 
+
+		//header meta tag
 		$data['header'] = array('title' => 'แจ้งชำระเงิน | '.$this->config->item('sitename'),
 								'description' =>  'แจ้งชำระเงิน | '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
 								'keyword' =>  'แจ้งชำระเงิน | '.$this->config->item('tagline') );
 
-		//get menu database 
+		//get menu database
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();
 		$data['menu_type'] = $this->initdata_model->get_type();
@@ -41,13 +41,13 @@ class Payment extends CI_Controller {
 
 	public function order($ref_id)
 	{
-		//header meta tag 
+		//header meta tag
 		$data['header'] = array('title' => 'แจ้งชำระเงิน | '.$this->config->item('sitename'),
 								'description' =>  'แจ้งชำระเงิน | '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
 								'keyword' =>  'แจ้งชำระเงิน | '.$this->config->item('tagline') );
 
-		//get menu database 
+		//get menu database
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();
 		$data['menu_type'] = $this->initdata_model->get_type();
@@ -106,9 +106,9 @@ class Payment extends CI_Controller {
 				m.date,
 				m.is_lavel1,
 				m.is_active
-				FROM orders o INNER JOIN  members m ON m.id = o.customer_id 
+				FROM orders o INNER JOIN  members m ON m.id = o.customer_id
 				LEFT JOIN payment p ON p.order_id = o.id
-				WHERE  o.ref_id = '".$ref_id."'"; 
+				WHERE  o.ref_id = '".$ref_id."'";
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
 
@@ -168,11 +168,11 @@ class Payment extends CI_Controller {
 		     		$re['error'] = false;
 					$re['message'] = 'เราได้รับการแจ้งเชำระเงินเรียบร้อยแล้ว';
 					print json_encode($re);
-		     
+
 		     }
 		     else
 		    {
-		    	
+
 		       show_error($this->email->print_debugger());
 		    }
 
@@ -188,13 +188,13 @@ class Payment extends CI_Controller {
 	public function save()
 	{
 
-		//header meta tag 
+		//header meta tag
 		$data['header'] = array('title' => 'แจ้งชำระเงิน | '.$this->config->item('sitename'),
 								'description' =>  'แจ้งชำระเงิน | '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
 								'keyword' =>  'แจ้งชำระเงิน | '.$this->config->item('tagline') );
 
-		//get menu database 
+		//get menu database
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();
 		$data['menu_type'] = $this->initdata_model->get_type();
@@ -223,12 +223,12 @@ class Payment extends CI_Controller {
 		}
 
 
-		$image_name = ""; 
+		$image_name = "";
 		$dir ='./uploads/payment/'.date("Ym").'/';
 		$dir_insert ='uploads/payment/'.date("Ym").'/';
 
         $this->my_upload->upload($_FILES["userfile"]);
-	    if ( $this->my_upload->uploaded == true  ) 
+	    if ( $this->my_upload->uploaded == true  )
 	    {
 	      $this->my_upload->allowed   = array('image/*');
 	      //$this->my_upload->file_name_body_pre = 'thumb_';
@@ -237,13 +237,13 @@ class Payment extends CI_Controller {
 	      $this->my_upload->image_ratio_y         = true;
 	      $this->my_upload->process($dir);
 
-	      if ($this->my_upload->processed == true ) 
+	      if ($this->my_upload->processed == true )
 	      {
 	      	$data['is_error'] = false;
 	      	$image_name  = $this->my_upload->file_dst_name;
             $bodyText = $bodyText.'<img src="'.base_url('/').$dir_insert.$image_name.'" class="img-responsive" alt="Image"width="100%"><br>';
             //$this->load->view('template/layout', $data );
-      		
+
 	      }  else {
 
         	$data['is_error'] = true;
@@ -282,7 +282,7 @@ class Payment extends CI_Controller {
 		     		$re['error'] = false;
 					$re['message'] = 'เราได้รับการแจ้งเชำระเงินเรียบร้อยแล้ว';
 					//print json_encode($re);
-		     
+
 		     }
 		     else {
 		     		$data['is_error'] = true;
@@ -292,32 +292,36 @@ class Payment extends CI_Controller {
         $data['txt_res'] = $bodyText;
         $data['content'] = 'payment';
         $this->load->view('template/layout', $data );
-       
+
 	}
 
 	public function save_order()
 	{
+		if(!$this->session->userdata('is_logged_in')){
+ 		 redirect('dealer','refresh');
 
-		//header meta tag 
+ 	 }
+
+		//header meta tag
 		$data['header'] = array('title' => 'แจ้งชำระเงิน | '.$this->config->item('sitename'),
 								'description' =>  'แจ้งชำระเงิน | '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
 								'keyword' =>  'แจ้งชำระเงิน | '.$this->config->item('tagline') );
 
-		//get menu database 
+		//get menu database
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();
 		$data['menu_type'] = $this->initdata_model->get_type();
 		$data['menu_brands'] = $this->initdata_model->get_brands();
-	
-	
-   
-		$image_name = ""; 
+
+
+
+		$image_name = "";
 		$dir ='./uploads/payment/'.date("Ym").'/';
 		$dir_insert ='uploads/payment/'.date("Ym").'/';
 
         $this->my_upload->upload($_FILES["userfile"]);
-	    if ( $this->my_upload->uploaded == true  ) 
+	    if ( $this->my_upload->uploaded == true  )
 	    {
 	      $this->my_upload->allowed   = array('image/*');
 	      //$this->my_upload->file_name_body_pre = 'thumb_';
@@ -326,14 +330,14 @@ class Payment extends CI_Controller {
 	      $this->my_upload->image_ratio_y         = true;
 	      $this->my_upload->process($dir);
 
-	      if ( $this->my_upload->processed == true ) 
+	      if ( $this->my_upload->processed == true )
 	      {
 
 			$image_name  = $this->my_upload->file_dst_name;
 			$data_product = array(
 			"image_slip_customer" => $dir_insert.$image_name,
 			);
-			$where = "id = '".$this->input->post('order_id')."'";  
+			$where = "id = '".$this->input->post('order_id')."'";
 			$this->db->update('orders', $data_product, $where );
 
 
@@ -349,11 +353,11 @@ class Payment extends CI_Controller {
 				"amount" => $this->input->post('amount'),
 				"inform_date_time" => $this->input->post('inform_date')." ".$this->input->post('inform_time'),
 				"create_date" => date("Y-m-d H:i:s"),
-				"modified_date" => date("Y-m-d H:i:s"),	
+				"modified_date" => date("Y-m-d H:i:s"),
 				"is_active" => 1,
 			);
 			$this->db->insert('payment', $data_payment);
-			$this->my_upload->clean();  
+			$this->my_upload->clean();
 			$data['is_error'] = false;
 			$data['error'] = "เราได้รับการแจ้งชำระเงินเรียบร้อยแล้ว";
 
@@ -397,17 +401,17 @@ class Payment extends CI_Controller {
 		     		$re['error'] = false;
 					$re['message'] = 'เราได้รับการแจ้งเชำระเงินเรียบร้อยแล้ว';
 					//print json_encode($re);
-		     
+
 		     }
 		     else {
 		     		$data['is_error'] = true;
 			}
-			    
+
 
 
 	      } else {
 	        $data['error'] = $this->my_upload->error;
-	        //echo $data['errors'];    
+	        //echo $data['errors'];
 
 	        $data['is_error'] = true;
 
@@ -417,7 +421,7 @@ class Payment extends CI_Controller {
 	        $data['is_error'] = true;
 	    }
 
-        $data['content'] = 'payment_order'; 
+        $data['content'] = 'payment_order';
         $this->load->view('template/layout', $data );
 
 	}

@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/loading-bar.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/dist/css/sweetalert2.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
   <style>
@@ -44,15 +45,15 @@
     <![endif]-->
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" ng-app="myApp" ng-controller="myCtrl">
+<body class="hold-transition skin-blue sidebar-mini" ng-app="mainApp" ng-controller="mainCtrl">
   <div class="wrapper">
     <header class="main-header">
       <!-- Logo -->
       <a href="<?php echo base_url(); ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>CB</b></span>
+        <span class="logo-mini"><b><?php echo $this->config->item('short_sitename'); ?></b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>xcitehitec</b></span>
+        <span class="logo-lg"><b><?php echo $this->config->item('short_sitename'); ?></b></span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top" role="navigation">
@@ -66,20 +67,24 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<?php echo base_url(); ?>assets/dist/img/avatar.png" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs"><?php echo ucfirst($this->session->userdata('username')); ?></span>
+                  <span class="hidden-xs"><?php echo $global['name']; ?></span>
                 </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
                   <img src="<?php echo base_url(); ?>assets/dist/img/avatar.png" class="img-circle" alt="User Image" />
                   <p>
-                    <?php echo ucfirst($this->session->userdata('username')); ?>
+                    <?php echo $global['name']; ?>
+                      <small><?php echo $global['role_text']; ?></small>
                   </p>
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                  <div class="text-center">
-                    <a href="<?php echo base_url('signout');?>" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Sign out</a>
+                  <div class="pull-left">
+                    <a href="<?php echo base_url(); ?>loadChangePass" class="btn btn-default btn-flat"><i class="fa fa-key"></i> Change Password</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="<?php echo base_url(); ?>logout" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -98,7 +103,7 @@
             <img src="<?php echo base_url(); ?>assets/dist/img/avatar.png" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p><?php echo ucfirst($this->session->userdata('username')); ?></p>
+            <p><?php echo $global['name']; ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -107,16 +112,16 @@
           <li class="header">MAIN NAVIGATION</li>
           <?php
             $parent_active = "0";
-            foreach ($menus_list as $menu) {
+            foreach ($menu_list as $menu) {
               //find parentid
-              if($menu['id'] == $menu_id){
+              if($menu['menu_id'] == $menu_id){
                 $parent_active = $menu['parent_id'];
               }
             }
           ?>
-          <?php foreach ($menus_list as $menu): ?>
+          <?php foreach ($menu_list as $menu): ?>
               <?php if ($menu['parent_id'] == "0"): ?>
-                <li class="<?php if ($parent_active == $menu['id']){echo "active";} ?> treeview">
+                <li class="<?php if ($parent_active == $menu['menu_id']){echo "active";} ?> treeview">
                   <a href="<?php echo base_url().$menu['link']; ?>">
                     <i class="<?php echo $menu['icon']; ?>"></i> <span><?php echo $menu['name']; ?></span>
                     <span class="pull-right-container">
@@ -124,9 +129,9 @@
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <?php foreach ($menus_list as $supmenu): ?>
-                        <?php if ($supmenu['parent_id'] == $menu['id']): ?>
-                          <li class="<?php if ($supmenu['id']== $menu_id) {echo "active";} ?>">
+                    <?php foreach ($menu_list as $supmenu): ?>
+                        <?php if ($supmenu['parent_id'] == $menu['menu_id']): ?>
+                          <li class="<?php if ($supmenu['menu_id']== $menu_id) {echo "active";} ?>">
                             <a href="<?php echo base_url().$supmenu['link']; ?>">
                               <i class="<?php echo $supmenu['icon']; ?>"></i> <span><?php echo $supmenu['name']; ?></span>
                             </a>
@@ -138,7 +143,7 @@
 
               <?php endif; ?>
               <?php if ($menu['parent_id'] == "99"): ?>
-                <li class="<?php if ($menu['id']== $menu_id) {echo "active";} ?>">
+                <li class="<?php if ($menu['menu_id']== $menu_id) {echo "active";} ?>">
                   <a href="<?php echo base_url().$menu['link']; ?>">
                     <i class="<?php echo $menu['icon']; ?>"></i> <span><?php echo $menu['name']; ?></span>
                   </a>

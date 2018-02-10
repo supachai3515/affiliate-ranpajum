@@ -34,7 +34,7 @@
             <button type="submit" class="btn btn-primary">ค้นหา</button>
         </form>
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>วันที่</th>

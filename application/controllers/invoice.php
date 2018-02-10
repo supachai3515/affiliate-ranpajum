@@ -7,7 +7,7 @@ class Invoice extends CI_Controller {
 		//call model inti 
 		$this->load->model('initdata_model');
 		$this->load->library('pagination');
-		 
+		 session_start();
 	}
 
 	public function index($ref_order_id="")

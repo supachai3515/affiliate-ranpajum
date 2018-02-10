@@ -3,12 +3,12 @@
 	app.controller("order", function($scope, $http, $uibModal, $log) {
 
 		 $scope.open = function (product_id_p,qty_p,order_id_p) {
-		  	
+
 		    var modalInstance = $uibModal.open({
 		      animation: $scope.animationsEnabled,
 		      templateUrl: 'myModalContent.html',
 		      controller: 'ModalInstanceCtrl',
-		      size: "",
+		      size: "lg",
 		      resolve: {
 		        items: function () {
 		        	var re_pa = {
@@ -45,9 +45,9 @@
 		 		  				  credit_note_docno : "<?php echo $orders_data['credit_note_docno'] ?>",
 								};
 			<?php endif ?>
- 	
+
 		 $scope.open_credit = function () {
-		  	
+
 		    var modalInstance = $uibModal.open({
 		      animation: $scope.animationsEnabled,
 		      templateUrl: 'myModalContent_credit.html',
@@ -103,14 +103,14 @@
 		            url: '<?php echo base_url('orders/get_search_credit_note');?>',
 		            headers: { 'Content-Type': 'application/x-www-form-urlencoded'
 		         }, data: { search : $scope.search_order }
-		           
+
 		        }).success(function(data) {
 		             var order_data = data;
  					$scope.order_data = order_data;
 				});
 
 			}
-			
+
 		};
 
 
@@ -139,11 +139,11 @@
 	         data: { product_id : re_pa.product_id,
 	         		order_id : re_pa.order_id,
 	         }
-	           
+
 	        }).success(function(data) {
 	            $scope.product_serial = data;
 	            var count_p = $scope.product_serial.length;
-	            for (i = 0; i < re_pa.qty - count_p; i++) { 
+	            for (i = 0; i < re_pa.qty - count_p; i++) {
 
 	            	 var product_serial = {
 	                      	  sku: "",
@@ -155,7 +155,7 @@
 	                          create_date: "",
 	                          modified_date: "",
 	                          modified_date_order: "",
-	     
+
 	                      };
 
 	            	$scope.product_serial.push(product_serial);
@@ -175,7 +175,7 @@
 
 	    $scope.removeSerial = function(index){
 	    $scope.product_serial.splice(index, 1);
-	   };    
+	   };
 
 	    $scope.save_serial = function(index){
 	    	$scope.txtError ="";
@@ -190,7 +190,7 @@
 	    	 		if($scope.product_serial.serial_number[value.line_number].trim() == "" ){
 	    	 			 ch_ = false;
               			console.log($scope.product_serial.serial_number[value.line_number]);
-              		
+
               		} else{
 
               			 $scope.product_serial[index].serial_number = $scope.product_serial.serial_number[value.line_number].trim();
@@ -200,7 +200,7 @@
 	    	 	 	  console.log(err.message);
 	                  ch_ = false;
 	             }
-				  		
+
 			  });
 
 	    	 if(ch_ == true){
@@ -217,9 +217,9 @@
 									$scope.txtError = $scope.txtError + value.serial_number  +" ซ้ำ , ";
 								}
 		              		}
-								  		
+
 						});
-						  		
+
 					 });
 
     	 		 	if(ch_dup ==true) {
@@ -234,9 +234,9 @@
 						           'Content-Type': 'application/x-www-form-urlencoded'
 						         },
 						         	data: $scope.product_serial
-						           
+
 						        }).success(function(data) {
-						        	
+
 						        	$scope.txtError = "";
 						           var  result = data;
 
@@ -263,8 +263,8 @@
 	    	 	$scope.txtError ="กรุณากรอก serial number ให้ครบ";
 	    	 }
 
-	    
-	   };  
+
+	   };
 
 	});
 
@@ -310,6 +310,3 @@
     });
 
 </script>
-
-
-	

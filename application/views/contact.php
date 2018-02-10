@@ -11,16 +11,16 @@
             <div style="padding-top: 20px;"></div>
             <div class="row">
 
-            <div class="col-sm-6 col-lg-6 col-md-6">
+            <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="our-team">
                     <h2 class="sub-section-title">
-                        xcitehitec (เอ็กไซ ไฮเทค)
+                        cyberbatt (cyberbatt.com)
                     </h2>
                     <address>
-                        <p><i class="fa fa-map-marker"></i>  บริษัท เอ็กไซ ไฮเทค จำกัด <br>ห้อง 3R036-037 ชั้น 3 ตึกคอมโฆษะขอนแก่น ถนนศรีจันทร์  ตำบลในเมือง อำเภอเมือง จังหวัดขอนแก่น 40000</p>
-                        <p><i class="fa fa-phone"></i> Mobile: 087-8809644 , TEL. 043-389438</p>
+                        <p><i class="fa fa-map-marker"></i>  บริษัท ไซเบอร์ แบต จำกัด <br>2963 ซ.ลาดพร้าว 101/2 ถ.ลาดพร้าว คลองจั่น บางกะปิ กทม. 10310 </p>
+                        <p><i class="fa fa-phone"></i> Mobile: 091-7824565</p>
                         <p><i class="fa fa-envelope-o"></i> Email: <?php echo $this->config->item('email_owner') ?></p>
-                        <p><i class="fa fa-comment"></i> Line Id: <a href="http://line.me/ti/p/%40xcitehitec" target="_blank">@xcitehitec</a></p>
+                        <p><i class="fa fa-comment"></i> Line Id: <a href="http://line.me/ti/p/%40cyberbatt" target="_blank">@cyberbatt</a></p>
                     </address>
                 </div>
                   <div id="fb-root"></div>
@@ -32,19 +32,62 @@
                       fjs.parentNode.insertBefore(js, fjs);
                     }(document, 'script', 'facebook-jssdk'));</script>
                         <div class="add-banner-carsuol">
-                            <div class="fb-page" data-href="https://www.facebook.com/xcitehiteccom-259231204578178/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                                <blockquote cite="https://www.facebook.com/xcitehiteccom-259231204578178/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/xcitehiteccom-259231204578178/">xcitehitec.com</a></blockquote>
+                            <div class="fb-page" data-href="https://www.facebook.com/cyberbatt/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/cyberbatt/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/cyberbatt/">cyberbatt.com</a></blockquote>
                             </div>
                         </div>
             </div>
-            <div class="col-sm-6 col-lg-6 col-md-6">
+            <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="our-team">
                     <h2 class="sub-section-title">
-                        xcitehitec (เอ็กไซ ไฮเทค)
+                       สมัครตัวแทนจำหน่าย ติดต่อ
                     </h2>
+                    <address>
+                        <p><i class="fa fa-comment"></i> Line Id: <a href="http://line.me/ti/p/%40cyberbatt" target="_blank">@cyberbatt</a></p>
+
+                        <p><i class="fa fa-map-marker"></i>  ที่อยู่จัดส่งเอกสารทางบัญชี<br>
+                        ชั้น 1 โซน B เลขที่ 396 ถ.ศรีวรา พลับพลา วังทองหลาง กทม.  10310
+                        <i class="fa fa-phone"></i> Tel : 081-7547565
+                        </p>
+
+                        <p><i class="fa fa-map-marker"></i>  ที่อยู่จัดส่งสินค้าเคลม <br>
+                        2963 ซ. ลาดพร้าว 101/2 ถ.ลาดพร้าว คลองจั่น บางกะปิ กทม. 10240 (ส่ง EMS  หรือ Kerry เท่านั้น)<br>
+
+                    </address>
                 </div>
-                <img src="<?php echo base_url('theme');?>/img/xc_ct1.jpg"  class="img-responsive" alt="">
             </div>
+            <div class="col-sm-4 col-lg-4 col-md-4">
+             <div class="our-team">
+                <h2 class="sub-section-title">
+                    สอบถาม สั่งซื้อสินค้าออนไลน์ผ่านเว็บไซต์
+                </h2>
+              <address>
+
+                        <p><i class="fa fa-comment"></i> Line Id: <a href="http://line.me/ti/p/%40cyberbatt" target="_blank">@cyberbatt</a></p>
+                        </address>
+
+                         <h2 class="sub-section-title">
+                            ซื้อสินค้าผ่านตัวแทนจำหน่าย หรือ ปรึกษาช่าง
+                        </h2>
+                    <address>
+
+                        <p>CYBER2FIX  ทาวน์อินทาวน์<br><i class="fa fa-map-marker"></i>
+                        ชั้น 1 โซน B เลขที่ 396 ถ.ศรีวรา พลับพลา วังทองหลาง 10310
+                        <i class="fa fa-phone"></i> Tel : 094-749-6264
+                        </p>
+
+                        <p>CYBER2FIX สุขุมวิท <br><i class="fa fa-map-marker"></i> ชั้น 1 เลขที่ 109/45 ซ.พร้อมพงษ์ (สุุขุมวิท 39) คลองตันเหนือ วัฒนา กทม. 10110
+                        <i class="fa fa-phone"></i> Tel : 093-195-5324</p>
+
+                        <p>CYBER2FIX ลาดพร้าว <br><i class="fa fa-map-marker"></i> 2963 ซ.ลาดพร้าว 101/2 ถ.ลาดพร้าว คลองจั่น บางกะปิ กทม. 10240
+                        <i class="fa fa-phone"></i> Tel : 088-297-4417</p>
+                    </address>
+
+               <!--
+                <a class="fancybox-thumb" data-fancybox-group="group" href="<?php echo base_url('theme');?>/img/banner/map-bboycomputer.jpg">
+				<img  class="img-thumbnail img-responsive" src="<?php echo base_url('theme');?>/img/banner/map-bboycomputer.jpg" alt="แผนที่ร้าน bboycomputer">
+				</a>
+                -->
             </div>
             </div>
         </div>

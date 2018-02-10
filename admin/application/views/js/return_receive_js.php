@@ -19,7 +19,7 @@
 		      animation: $scope.animationsEnabled,
 		      templateUrl: 'myModalContent.html',
 		      controller: 'ModalInstanceCtrl',
-		      size: "",
+		      size: "lg",
 		      resolve: {
 		        items: function () {
 		          return $scope.items;
@@ -48,7 +48,7 @@
 
 	});
 
-	angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($scope,$http, $uibModalInstance, items) {
+	angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($scope,$http, $uibModalInstance,cfpLoadingBar, items) {
 		  $scope.items = items;
 		  $scope.order_data;
 
@@ -62,7 +62,6 @@
 
 		$scope.searchOrder = function () {
 			if($scope.search_order.length > 0){
-
 				$http({
 		            method: 'POST',
 		            url: '<?php echo base_url('return_receive/get_search_order');?>',
@@ -72,7 +71,9 @@
 		        }).success(function(data) {
 		             var order_data = data;
  					$scope.order_data = order_data;
-				});
+				}).finally(function() {
+        cfpLoadingBar.complete();
+      });
 
 			}
 

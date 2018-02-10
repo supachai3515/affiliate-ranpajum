@@ -14,14 +14,14 @@
 			product_id : "<?php echo $delivery_return_data['product_id'] ?>"};
 
 		<?php endif ?>
- 	
+
 		 $scope.open = function () {
-		  	
+
 		    var modalInstance = $uibModal.open({
 		      animation: $scope.animationsEnabled,
 		      templateUrl: 'myModalContent.html',
 		      controller: 'ModalInstanceCtrl',
-		      size: "",
+		      size: "lg",
 		      resolve: {
 		        items: function () {
 		          return $scope.items;
@@ -37,7 +37,7 @@
 		     $scope.return_id = $scope.items.return_id;
 		     $scope.serial = $scope.items.serial;
 		     $scope.product_id = $scope.items.product_id;
-		     
+
 		     	console.log($scope.items);
 		    }, function () {
 		      $log.info('Modal dismissed at: ' + new Date());
@@ -71,14 +71,14 @@
 		            url: '<?php echo base_url('delivery_return/get_search_order');?>',
 		            headers: { 'Content-Type': 'application/x-www-form-urlencoded'
 		         }, data: { search : $scope.search_order }
-		           
+
 		        }).success(function(data) {
 		             var order_data = data;
  					$scope.order_data = order_data;
 				});
 
 			}
-			
+
 		};
 
 
@@ -96,4 +96,3 @@
 
 
 </script>
-	

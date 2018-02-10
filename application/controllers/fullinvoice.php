@@ -9,7 +9,7 @@ class Fullinvoice extends CI_Controller {
 		$this->load->model('initdata_model');
 		$this->load->library('pagination');
 		$this->load->model('orders_model');
-		 
+		 session_start();
 	}
 
 	public function index($ref_order_id="")

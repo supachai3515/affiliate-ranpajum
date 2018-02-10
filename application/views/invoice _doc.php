@@ -23,12 +23,15 @@
 
             	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             		<img src="<?php echo base_url('theme');?>/img/logo/logo.png" style="width: 200px"/>
-            		<?php echo $this->config->item('address_own'); ?>
+            		<h4><?php echo $this->config->item('short_sitename')?></h4>
+			  		 บริษัท ไซเบอร์ แบต จำกัด 2963 ซ.ลาดพร้าว <br>
+			  		 101/2 ถ.ลาดพร้าว คลองจั่น บางกะปิ กทม. 10310<br>
+
             	</div>
             	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
 	                <h2>เลขที่ใบสั่งซื้อ #<?php echo  $order['id'];?> </h2>
 	                <strong>วันที่ออก <?php echo $order['date']?></strong><br/>
-					กรุณาชำระเงินภายใน 3 วัน
+					กรุณาชำระเงินภายใน 3 วัน 
             	</div>
 		</div>
 		<div class="row" style="padding-top:10px;">
@@ -65,7 +68,7 @@
 		</div>
 
 
-		<?php if($order['customer_id'] != ""){ ?>
+		<?php if($order['customer_id'] != ""){ ?> 
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<h4>สมาชิก Dealer</h4>
@@ -150,21 +153,21 @@
 	    		   <?php echo $this->config->item('payment_transfer') ?>
 	    		</div>
 	    	</div>
-
+	        	
 			</div>
 		</div>
 		<div class="row">
-			<p class="text-center">
+			<p class="text-center"> 
 			<button type="button" class="btn btn-primary" onClick="window.print()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> พิมพ์ใบชำระเงิน</button>
 			<a class="btn btn-success" href="<?php echo base_url();?>" role="button">ปิดหน้าต่างนี้</a>
 			</p>
 		</div>
 	</div>
-
+	
 <style>
 
 .height {
-
+   
 }
 
 .icon {
@@ -242,7 +245,7 @@
 			            console.log(data);
 			            });
 		            <?php } ?>
-
+  
 		       	}
 
 			});

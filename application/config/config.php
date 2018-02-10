@@ -19,31 +19,34 @@ $config['base_url'] .= "://".$_SERVER['HTTP_HOST'];
 $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 
 //Config by user
-$config['short_sitename'] = "xcitehitec (เอ็กไซ ไฮเทค)";
-$config['sitename'] = "อะไหล่แมคบุ๊ค อะไหล่โน๊ตบุ๊ค อะไหล่ไอโฟน แบต จอ คีบอร์ด - xcitehitec";
+$config['short_sitename'] = "Cyberbatt (ไซเบอร์ แบต)";
+$config['sitename'] = "อะไหล่แมคบุ๊ค อะไหล่โน๊ตบุ๊ค อะไหล่ไอโฟน แบต จอ คีบอร์ด - cyberbatt";
 $config['tagline'] = "อะไหล่แมคบุ๊ค อะไหล่โน๊ตบุ๊ค อะไหล่ไอโฟน จอแมคบุ๊ค จอไอแมค จอไอโฟน  แบตเตอรี่โน๊ตบุ๊ค แบตเตอรี่แมคบุ๊ค แบตเตอรี่ไอโฟน  ครบวงจร";
-$config['author'] = "xcitehitec (เอ็กไซ ไฮเทค)";
+$config['author'] = "Cyberbatt (ไซเบอร์ แบต)";
 $config['keyword'] = "อะไหล่แมคบุ๊ค,อะไหล่โน๊ตบุ๊ค,อะไหล่ไอโฟน,จอแมคบุ๊ค,จอไอแมค,จอไอโฟน,แบตเตอรี่โน๊ตบุ๊ค,แบตเตอรี่แมคบุ๊ค,แบตเตอรี่ไอโฟน,ครบวงจร";
 
 
-$config['url_img'] = "http://xcitehitec.com/";
-$config['no_url_img'] = "http://xcitehitec.com/uploads/no_image.jpg";
+$config['url_img'] = "http://www.cyberbatt.com/";
+$config['no_url_img'] = "http://www.cyberbatt.com/uploads/no_image.jpg";
 
-$config['email_name'] = "xcitehitec";
-$config['email_owner'] = "xcitehitec.trade@gmail.com";
-$config['email_noreply'] = "xcitehitec.cs@gmail.com";
-$config['pass_mail_noreply'] = "xc!t3!t3c";
-$config['weburl'] = "http://xcitehitec.com/";
-$config['line_id'] = "@xcitehitec";
+$config['email_name'] = "cyberbatt";
+$config['email_owner'] = "cyberbatt_md@hotmail.com";
+$config['email_noreply'] = "cyberbatt.fix@gmail.com";
+$config['pass_mail_noreply'] = "0917824565";
+$config['weburl'] = "http://www.cyberbatt.com/";
+$config['line_id'] = "@cyberbatt";
 
-$config['payment_transfer'] = '<h4>ธนาคารไทยพาณิชย์</h4>
-								<p>เลขที่บัญชี : <strong>935-229047-8</strong> บริษัท เอ็กไซ ไฮเทค จำกัด</p>
+$config['payment_transfer'] = '<h4>ธนาคารกรุงเทพ</h4>
+								<p>เลขที่บัญชี : <strong>087-3-00208-3</strong> บริษัท ไซเบอร์ แบต จำกัด</p>
+								<h4>ธนาคารไทยพาณิชย์</h4>
+								<p>เลขที่บัญชี : <strong>403-8-25867-1</strong> บริษัท ไซเบอร์ แบต จำกัด</p>
+								<h4>ธนาคารกสิกร</h4>
+								<p>เลขที่บัญชี : <strong>996-2-05800-8</strong> บริษัท ไซเบอร์ แบต จำกัด</p>
+								<h4>ธนากรุงไทย</h4>
+								<p>เลขที่บัญชี : <strong>981-7-80914-5</strong> บริษัท ไซเบอร์ แบต จำกัด</p>
+
 								';
 
-$config['address_own'] = '<h4>บริษัท เอ็กไซ ไฮเทค จำกัด</h4>
-															ห้อง ห้อง 3r036-037ชั้น 3 ตึกคอมโฆษะขอนแก่น ถนนศรีจันทร์ ตำบลในเมือง อำเภอเมือง จังหวัดขอนแก่น 40000 <br>
-															โทร โทร 043-389438/087-8809644<br>
-															<strong>เลขประจำตัวผู้เสียภาษี 0105559113718</strong>';
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -273,7 +276,7 @@ $config['encryption_key'] = 'k152qkFSaX2rNt6c2yZrEaQOAPtskF7u';
 |
 */
 $config['sess_cookie_name']		= 'ci_session';
-$config['sess_expiration']		= 86400;
+$config['sess_expiration']		= 25992000;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= FALSE;
 $config['sess_use_database']	= TRUE;

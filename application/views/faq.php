@@ -31,7 +31,7 @@
                             สินค้าทุกชิ้นมีการรับประกัน
                         </li>
                     </ul>
-                    Line : <a href="http://line.me/ti/p/%40xcitehitec" target="_blank">@xcitehitec</a><br>
+                    Line : <a href="http://line.me/ti/p/%40cyberbatt" target="_blank">@cyberbatt</a><br>
 
                     <div style="padding-top: 20px;"></div>
 
@@ -44,8 +44,8 @@
                       fjs.parentNode.insertBefore(js, fjs);
                     }(document, 'script', 'facebook-jssdk'));</script>
                         <div class="add-banner-carsuol">
-                            <div class="fb-page" data-href="https://www.facebook.com/xcitehiteccom-259231204578178/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                                <blockquote cite="https://www.facebook.com/xcitehiteccom-259231204578178/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/xcitehiteccom-259231204578178/">xcitehitec.com</a></blockquote>
+                            <div class="fb-page" data-href="https://www.facebook.com/cyberbatt/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/cyberbatt/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/cyberbatt/">cyberbatt.com</a></blockquote>
                             </div>
                         </div>
                 </div>

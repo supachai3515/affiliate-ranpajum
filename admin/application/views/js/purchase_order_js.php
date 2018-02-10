@@ -157,7 +157,7 @@
 		      animation: $scope.animationsEnabled,
 		      templateUrl: 'myModalContent.html',
 		      controller: 'ModalInstanceCtrl',
-		      size: "",
+		      size: "lg",
 		      resolve: {
 		        items: function () {
 		        	var re_pa = {

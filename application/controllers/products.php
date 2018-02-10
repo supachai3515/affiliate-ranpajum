@@ -8,7 +8,7 @@ class Products extends CI_Controller {
 		$this->load->model('initdata_model');
 		$this->load->model('products_model');
 		$this->load->library('pagination');
-		 
+		 session_start();
 	}
 
 	//page view
@@ -50,7 +50,7 @@ class Products extends CI_Controller {
 		$data['header'] = array('title' => 'สินค้า | '.$this->config->item('sitename'),
 								'description' =>  'สินค้า | '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
-								'keyword' =>  'bboyxcitehitec');
+								'keyword' =>  'bboycomputer');
 		//get menu database
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();

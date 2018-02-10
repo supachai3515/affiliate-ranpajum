@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -54,6 +54,7 @@ $autoload['packages'] = array();
 
 $autoload['libraries'] = array('database', 'session','cart');
 
+
 /*
 | -------------------------------------------------------------------
 |  Auto-load Helper Files
@@ -63,7 +64,7 @@ $autoload['libraries'] = array('database', 'session','cart');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form');
+$autoload['helper'] = array('url', 'file','cias_helper', 'form');
 
 
 /*
@@ -108,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array("orders_model");
+$autoload['model'] = array('initdata_model');
 
 
 /* End of file autoload.php */

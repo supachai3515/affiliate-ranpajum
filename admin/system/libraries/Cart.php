@@ -262,49 +262,60 @@ class CI_Cart {
 	 * @param	string
 	 * @return	bool
 	 */
-	function update($items = array())
-	{
-		// Was any cart data passed?
-		if ( ! is_array($items) OR count($items) == 0)
-		{
-			return FALSE;
-		}
+	 function update($items = array())
+     {
+         // Was any cart data passed?
+         if ( ! is_array($items) OR count($items) == 0)
+         {
+             return FALSE;
+         }
 
-		// You can either update a single product using a one-dimensional array,
-		// or multiple products using a multi-dimensional one.  The way we
-		// determine the array type is by looking for a required array key named "id".
-		// If it's not found we assume it's a multi-dimensional array
-		$save_cart = FALSE;
-		if (isset($items['rowid']) AND isset($items['qty']))
-		{
-			if ($this->_update($items) == TRUE)
-			{
-				$save_cart = TRUE;
-			}
-		}
-		else
-		{
-			foreach ($items as $val)
-			{
-				if (is_array($val) AND isset($val['rowid']) AND isset($val['qty']))
-				{
-					if ($this->_update($val) == TRUE)
-					{
-						$save_cart = TRUE;
-					}
-				}
-			}
-		}
+         // You can either update a single product using a one-dimensional array,
+         // or multiple products using a multi-dimensional one.  The way we
+         // determine the array type is by looking for a required array key named "id".
+         // If it's not found we assume it's a multi-dimensional array
+         $save_cart = FALSE;
+         if (isset($items['rowid']) AND isset($items['qty']) AND !isset($items['price']))
+         {
+             if ($this->_update($items) == TRUE)
+             {
+                 $save_cart = TRUE;
+             }
+         }
+     /************************************************
+     * code updated here, to update price
+     * But you have to pass quantity as well
+     */
+     elseif (isset($items['rowid']) AND isset($items['qty']) AND isset($items['price']))
+         {
+             if ($this->_update($items) == TRUE)
+             {
+                 $save_cart = TRUE;
+             }
+         }
+         else
+         {
+             foreach ($items as $val)
+             {
+                 if (is_array($val) AND isset($val['rowid']) AND isset($val['qty']))
+                 {
+                     if ($this->_update($val) == TRUE)
+                     {
+                         $save_cart = TRUE;
+                     }
+                 }
+             }
+         }
 
-		// Save the cart data if the insert was successful
-		if ($save_cart == TRUE)
-		{
-			$this->_save_cart();
-			return TRUE;
-		}
+         // Save the cart data if the insert was successful
+         if ($save_cart == TRUE)
+         {
+             $this->_save_cart();
+             return TRUE;
+         }
 
-		return FALSE;
-	}
+         return FALSE;
+     }
 
 	// --------------------------------------------------------------------
 
@@ -320,43 +331,53 @@ class CI_Cart {
 	 * @param	array
 	 * @return	bool
 	 */
-	function _update($items = array())
-	{
-		// Without these array indexes there is nothing we can do
-		if ( ! isset($items['qty']) OR ! isset($items['rowid']) OR ! isset($this->_cart_contents[$items['rowid']]))
-		{
-			return FALSE;
-		}
+	 function _update($items = array())
+     {
+         // Without these array indexes there is nothing we can do
+         if ( ! isset($items['qty']) OR ! isset($items['rowid']) OR ! isset($this->_cart_contents[$items['rowid']]))
+         {
+             return FALSE;
+         }
 
-		// Prep the quantity
-		$items['qty'] = preg_replace('/([^0-9])/i', '', $items['qty']);
+         // Prep the quantity
+         $items['qty'] = preg_replace('/([^0-9])/i', '', $items['qty']);
 
-		// Is the quantity a number?
-		if ( ! is_numeric($items['qty']))
-		{
-			return FALSE;
-		}
+         // Is the quantity a number?
+         if ( ! is_numeric($items['qty']))
+         {
+             return FALSE;
+         }
 
-		// Is the new quantity different than what is already saved in the cart?
-		// If it's the same there's nothing to do
-		if ($this->_cart_contents[$items['rowid']]['qty'] == $items['qty'])
-		{
-			return FALSE;
-		}
+         // Is the new quantity different than what is already saved in the cart?
+         // If it's the same there's nothing to do
+     // xxx|chnages made check price also
+         if (($this->_cart_contents[$items['rowid']]['qty'] == $items['qty']) AND ($this->_cart_contents[$items['rowid']]['price'] == $items['price']) )
+         {
+             return FALSE;
+         }
 
-		// Is the quantity zero?  If so we will remove the item from the cart.
-		// If the quantity is greater than zero we are updating
-		if ($items['qty'] == 0)
-		{
-			unset($this->_cart_contents[$items['rowid']]);
-		}
-		else
-		{
-			$this->_cart_contents[$items['rowid']]['qty'] = $items['qty'];
-		}
+         // Is the quantity zero?  If so we will remove the item from the cart.
+         // If the quantity is greater than zero we are updating
+         if ($items['qty'] == 0)
+         {
+             unset($this->_cart_contents[$items['rowid']]);
+         }
+         else
+         {
+             $this->_cart_contents[$items['rowid']]['qty'] = $items['qty'];
+         }
 
-		return TRUE;
-	}
+     /*********************
+     * the code update for price updatation
+     * xxx\custom added code
+     * */
+     // if the price is either float or numeric
+     if((isset($items['price']) AND is_float($items['price'])) || (isset($items['price']) AND is_numeric($items['price']))){
+       $this->_cart_contents[$items['rowid']]['price'] = $items['price'];
+     }
+
+         return TRUE;
+     }
 
 	// --------------------------------------------------------------------
 

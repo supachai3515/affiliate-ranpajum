@@ -1,138 +1,138 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined("BASEPATH") or exit("No direct script access allowed");
+require APPPATH . "/libraries/BaseController.php";
+class Productbrand extends BaseController
+{
+    public function __construct()
+    {
+        parent::__construct();
+        session_start();
+        $this->load->model("productbrand_model");
+        $this->isLoggedIn();
+    }
 
-class Productbrand extends CI_Controller {
-	public function __construct(){
-		parent::__construct();
-		//call model inti
-		$this->load->model('initdata_model');
-		$this->load->model('productbrand_model');
-		$this->load->model('products_model');
-		$this->load->library('pagination');
-		$this->is_logged_in();
+    //page view
+    public function index($page=0)
+    {
+        $data["global"] = $this->global;
+        $data["menu_id"] = $this->initdata_model->get_menu_id($this->router->fetch_class());
+        $data["menu_list"] = $this->initdata_model->get_menu($data["global"]["menu_group_id"]);
+        $data["access_menu"] = $this->isAccessMenu($data["menu_list"], $data["menu_id"]);
+        if ($data["access_menu"]["is_access"]&&$data["access_menu"]["is_view"]) {
+            $count = $this->productbrand_model->get_productbrand_count();
+            $data["links_pagination"] = $this->pagination_compress("productbrand/index", $count, $this->config->item("pre_page"));
+            $data["productbrand_list"] = $this->productbrand_model->get_productbrand($page, $this->config->item("pre_page"));
 
-	}
-
-	//page view
-	public function index($page=0)
-	{
-
-		$config['base_url'] = base_url('productbrand/index');
-		$config['total_rows'] = $this->productbrand_model->get_productbrand_count();
-		$config['per_page'] = 10;
-        /* This Application Must Be Used With BootStrap 3 *  */
-		$config['full_tag_open'] = "<ul class='pagination'>";
-		$config['full_tag_close'] ="</ul>";
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
-		$config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
-		$config['next_link'] = '&raquo';
-		$config['next_tag_open'] = "<li>";
-		$config['next_tagl_close'] = "</li>";
-		$config['prev_link'] = '&laquo';
-		$config['prev_tag_open'] = "<li>";
-		$config['prev_tagl_close'] = "</li>";
-		$config['first_tag_open'] = "<li>";
-		$config['first_tagl_close'] = "</li>";
-		$config['last_tag_open'] = "<li>";
-		$config['last_tagl_close'] = "</li>";
-
-    $this->pagination->initialize($config);
-		$data['productbrand_list'] = $this->productbrand_model->get_productbrand($page, $config['per_page']);
-		$data['links_pagination'] = $this->pagination->create_links();
-
-		$data['menus_list'] = $this->initdata_model->get_menu();
-
-		//call script
-        $data['menu_id'] ='7';
-		$data['content'] = 'productbrand';
-		$data['script_file']= "js/product_add_js";
-		$data['header'] = array('title' => 'productbrand| '.$this->config->item('sitename'),
-								'description' =>  'productbrand| '.$this->config->item('tagline'),
-								'author' => $this->config->item('author'),
-								'keyword' =>  'xcitehitec');
-		$this->load->view('template/layout', $data);
-	}
+            $data["content"] = "productbrand/productbrand";
+            //if script file
+            $data["script_file"]= "js/product_add_js";
+            $data["header"] = array("title" => "Product Brand | ".$this->config->item("sitename"),
+                                              "description" =>  "Product Brand | ".$this->config->item("tagline"),
+                                              "author" => $this->config->item("author"),
+                                              "keyword" => "Product Brand");
+            $this->load->view("template/layout_main", $data);
+        } else {
+            // access denied
+            $this->loadThis();
+        }
+    }
 
 
-	//page search
-	public function search()
-	{
+    //page search
+    public function search()
+    {
+        $data["global"] = $this->global;
+        $data["menu_id"] = $this->initdata_model->get_menu_id($this->router->fetch_class());
+        $data["menu_list"] = $this->initdata_model->get_menu($data["global"]["menu_group_id"]);
+        $data["access_menu"] = $this->isAccessMenu($data["menu_list"], $data["menu_id"]);
+        if ($data["access_menu"]["is_access"]&&$data["access_menu"]["is_view"]) {
+            $return_data = $this->productbrand_model->get_productbrand_search();
+            $data["productbrand_list"] = $return_data["result_productbrand"];
+            $data["data_search"] = $return_data["data_search"];
 
-		$return_data = $this->productbrand_model->get_productbrand_search();
-		$data['productbrand_list'] = $return_data['result_productbrand'];
-		$data['data_search'] = $return_data['data_search'];
-		$data['menus_list'] = $this->initdata_model->get_menu();
+            $data["content"] = "productbrand/productbrand";
+            //if script file
+            $data["script_file"]= "js/product_add_js";
+            $data["header"] = array("title" => "Product Brand | ".$this->config->item("sitename"),
+                                              "description" =>  "Product Brand | ".$this->config->item("tagline"),
+                                              "author" => $this->config->item("author"),
+                                              "keyword" => "Product Brand");
+            $this->load->view("template/layout_main", $data);
+        } else {
+            // access denied
+            $this->loadThis();
+        }
+    }
 
-        $data['menu_id'] ='7';
-		$data['content'] = 'productbrand';
-		$data['script_file']= "js/product_add_js";
-		$data['header'] = array('title' => 'productbrand| '.$this->config->item('sitename'),
-								'description' =>  'productbrand| '.$this->config->item('tagline'),
-								'author' => $this->config->item('author'),
-								'keyword' =>  'xcitehitec');
-		$this->load->view('template/layout', $data);
+    //page edit
+    public function edit($productbrand_id)
+    {
+        $data["global"] = $this->global;
+        $data["menu_id"] = $this->initdata_model->get_menu_id($this->router->fetch_class());
+        $data["menu_list"] = $this->initdata_model->get_menu($data["global"]["menu_group_id"]);
+        $data["access_menu"] = $this->isAccessMenu($data["menu_list"], $data["menu_id"]);
+        if ($data["access_menu"]["is_access"]&&$data["access_menu"]["is_edit"]) {
+            $data["productbrand_data"] = $this->productbrand_model->get_productbrand_id($productbrand_id);
+            $data["content"] = "productbrand/productbrand_edit";
+            //if script file
+            $data["script_file"]= "js/product_add_js";
+            $data["header"] = array("title" => "Product Brand | ".$this->config->item("sitename"),
+                                              "description" =>  "Product Brand | ".$this->config->item("tagline"),
+                                              "author" => $this->config->item("author"),
+                                              "keyword" => "Product Brand");
+            $this->load->view("template/layout_main", $data);
+        } else {
+            // access denied
+            $this->loadThis();
+        }
+    }
 
-	}
+    // update
+    public function update($productbrand_id)
+    {
+        $data["global"] = $this->global;
+        $data["menu_id"] = $this->initdata_model->get_menu_id($this->router->fetch_class());
+        $data["menu_list"] = $this->initdata_model->get_menu($data["global"]["menu_group_id"]);
+        $data["access_menu"] = $this->isAccessMenu($data["menu_list"], $data["menu_id"]);
+        if ($data["access_menu"]["is_access"]&&$data["access_menu"]["is_edit"]) {
+            date_default_timezone_set("Asia/Bangkok");
+            //save productbrand
+            $this->productbrand_model->update_productbrand($productbrand_id);
 
-	//page edit
-	public function edit($productbrand_id)
-	{
-		$this->is_logged_in();
-		$data['menus_list'] = $this->initdata_model->get_menu();
-		$data['productbrand_data'] = $this->productbrand_model->get_productbrand_id($productbrand_id);
-        $data['menu_id'] ='7';
-		$data['content'] = 'productbrand_edit';
-		$data['script_file']= "js/product_add_js";
-		$data['header'] = array('title' => 'productbrand| '.$this->config->item('sitename'),
-								'description' =>  'productbrand| '.$this->config->item('tagline'),
-								'author' => $this->config->item('author'),
-								'keyword' =>  'xcitehitec');
-		$this->load->view('template/layout', $data);
+            if ($productbrand_id!="") {
+                redirect("productbrand/edit/".$productbrand_id);
+            } else {
+                redirect("productbrand");
+            }
+        } else {
+            // access denied
+            $this->loadThis();
+        }
+    }
 
-	}
+    // insert
+    public function add()
+    {
+        $data["global"] = $this->global;
+        $data["menu_id"] = $this->initdata_model->get_menu_id($this->router->fetch_class());
+        $data["menu_list"] = $this->initdata_model->get_menu($data["global"]["menu_group_id"]);
+        $data["access_menu"] = $this->isAccessMenu($data["menu_list"], $data["menu_id"]);
+        if ($data["access_menu"]["is_access"]&&$data["access_menu"]["is_add"]) {
+            date_default_timezone_set("Asia/Bangkok");
+            //save document
+            $productbrand_id ="";
+            $productbrand_id = $this->productbrand_model->save_productbrand();
 
-	// update
-	public function update($productbrand_id)
-	{
-		date_default_timezone_set("Asia/Bangkok");
-		//save productbrand
-		$this->productbrand_model->update_productbrand($productbrand_id);
-
-		if($productbrand_id!=""){
-			redirect('productbrand/edit/'.$productbrand_id);
-		}
-		else {
-			redirect('productbrand');
-		}
-
-	}
-
-	// insert
-	public function add()
-	{
-		date_default_timezone_set("Asia/Bangkok");
-		//save document
-		$productbrand_id ="";
-		$productbrand_id = $this->productbrand_model->save_productbrand();
-
-		if($document_id !=""){
-			redirect('productbrand/edit/'.$productbrand_id);
-		}
-		else {
-			redirect('productbrand');
-		}
-	}
-
-	public function is_logged_in(){
-		$is_logged_in = $this->session->userdata('is_logged_in');
-		$chk_admin =  $this->session->userdata('permission');
-		if(!isset($is_logged_in) || $is_logged_in != true || $chk_admin !='admin'){
-			redirect('login');
-		}
-	}
-
+            if ($document_id !="") {
+                redirect("productbrand/edit/".$productbrand_id);
+            } else {
+                redirect("productbrand");
+            }
+        } else {
+            // access denied
+            $this->loadThis();
+        }
+    }
 }
 
 /* End of file productbrand.php */

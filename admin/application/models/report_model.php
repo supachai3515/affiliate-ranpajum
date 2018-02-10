@@ -4,50 +4,81 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Report_model extends CI_Model {
 
-	public function get_sumpayment($obj = '' ) {
+	public function getOrder($obj = '' ) {
 
-		date_default_timezone_set("Asia/Bangkok");
-		$date_from = date("Y-m-d");
-		$date_to = date("Y-m-d");
+		if($obj == ''){
+			date_default_timezone_set("Asia/Bangkok");
+			$date  = strtotime('-7 days');
+			$obj['dateStart'] = date("Y-m-d",$date );
+			$obj['dateEnd'] = date("Y-m-d");
+			$obj['list_category'] = "";
+		}
+		else {
 
-		if(empty( $obj['dateStart'] != '' && $obj['dateEnd'] == '')){
-			$date_from = $obj['dateStart'];
-		}elseif(empty($obj['dateStart'] != '' && $obj['dateEnd'] != '')){
-			$date_from = $obj['dateStart'];
-			$date_to = $obj['dateEnd'];
+			if($obj['dateStart'] != ''){
+				$obj['dateStart'] = $obj['dateStart'];
+			} else {
+				$obj['dateEnd'] = date("Y-m-d");
+			}
+
+			if($obj['dateEnd'] != ''){
+				$obj['dateEnd'] = $obj['dateEnd'];
+			} else {
+				$obj['dateEnd'] = date("Y-m-d");
+			}
+
+			if($obj['list_category'] == "0"){
+				$obj['list_category'] = "";
+			}
+
 		}
 
-		if(empty($obj['list_category']) == 1){
-			$sql = "SELECT DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d') inform_date ,pm.bank_name, SUM(pm.amount) amount
-				FROM payment pm
-				INNER JOIN orders o ON o.id = pm.order_id
-				WHERE o.order_status_id = 4
-				AND DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d')Between '".$date_from."' and '".$date_to."'
-				GROUP BY  pm.bank_name , DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d')
-				ORDER BY DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d') DESC"	;
+		$check = $this->input->post("checkbank");
+
+
+		if(!$check){
+			$sql = "SELECT  DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d') inform_date_time, pm.bank_name,
+							os.`name` order_status_name, o.order_status_id,
+							SUM(pm.amount) amount
+							FROM payment pm
+							INNER JOIN orders o ON o.id = pm.order_id
+							LEFT JOIN order_status os ON os.id = o.order_status_id
+							WHERE DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d')Between '".$obj['dateStart']."' and '".$obj['dateEnd']."'
+							AND pm.bank_name LIKE '%".$obj['list_category']."%'
+							GROUP BY  DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d'), pm.bank_name , os.`name`, o.order_status_id
+							ORDER BY pm.bank_name "	;
 
 				$re = $this->db->query($sql);
 				return $re->result_array();
 
 		}
 		else {
-			$sql = "SELECT DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d') inform_date ,pm.bank_name, SUM(pm.amount) amount
-				FROM payment pm
-				INNER JOIN orders o ON o.id = pm.order_id
-				WHERE o.order_status_id = 4
-				AND DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d')Between '".$date_from."' and '".$date_to."'
-				GROUP BY  pm.bank_name , DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d')
-				ORDER BY DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d') DESC"	;
+			$sql = "SELECT  DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d') inform_date ,
+							CONCAT('#',pm.order_id) order_id, o.invoice_docno, o.`name` order_name, o.total,
+								pm.bank_name,
+								os.`name` order_status_name, o.order_status_id,
+								SUM(pm.amount) amount
+							FROM payment pm
+							INNER JOIN orders o ON o.id = pm.order_id
+							LEFT JOIN order_status os ON os.id = o.order_status_id
+							WHERE DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d')Between '".$obj['dateStart']."' and '".$obj['dateEnd']."'
+							AND pm.bank_name LIKE '%".$obj['list_category']."%'
+							GROUP BY  DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d') ,
+											pm.order_id, o.invoice_docno, o.`name`,o.order_status_id, o.total,
+												pm.bank_name,
+												os.`name`
+							ORDER BY DATE_FORMAT(pm.inform_date_time ,'%Y-%m-%d'), pm.bank_name
+
+							";
 
 				$re = $this->db->query($sql);
 				return $re->result_array();
 		}
 
-
 	}
 
 
-	public function getOrder($obj = ''){
+	public function getOrder_old($obj = ''){
 
 		if($obj == ''){
 			date_default_timezone_set("Asia/Bangkok");
@@ -370,6 +401,86 @@ class Report_model extends CI_Model {
 			$query = $this->db->query("select *,sum(orders.total) as sum_total from orders where orders.order_status_id = 4 and DATE_FORMAT(orders.date,'%Y-%m-%d') Between '".DATE."' and '".DATE."' group by DATE_FORMAT(orders.date,'%Y-%m-%d')")->result_array();
 		}
 		return $query;
+	}
+
+	function get_report_return_receive($obj = ''){
+
+		if($obj == ''){
+			date_default_timezone_set("Asia/Bangkok");
+			$date  = strtotime('-7 days');
+			$obj['dateStart'] = date("Y-m-d",$date );
+			$obj['dateEnd'] = date("Y-m-d");
+		}
+		else {
+
+			if($obj['dateStart'] != ''){
+				$obj['dateStart'] = $obj['dateStart'];
+			} else {
+				$obj['dateEnd'] = date("Y-m-d");
+			}
+
+			if($obj['dateEnd'] != ''){
+				$obj['dateEnd'] = $obj['dateEnd'];
+			} else {
+				$obj['dateEnd'] = date("Y-m-d");
+			}
+
+		}
+
+		if(!isset($obj['search'])){
+			$obj['search'] ="";
+		}
+
+
+		date_default_timezone_set("Asia/Bangkok");
+		$data_return_receive = array(
+				'search' => $this->input->post('search')
+		);
+
+		$sql =" SELECT  rr.*,
+			o.id order_id, o.invoice_docno invoice_no,
+			o.`name` order_name,
+		o.address,
+		(SELECT docno FROM credit_note WHERE is_active = 1 AND return_id = rr.id) credit_note_docno,
+		(SELECT docno FROM delivery_return WHERE is_active = 1 AND return_id = rr.id) delivery_return_docno ,
+		o.date order_date,
+		s.serial_number,
+		p.id product_id,
+		p.name product_name,
+		p.sku,
+		sl.name supplier_name,
+		rt.name return_type_name
+
+		FROM return_receive  rr INNER JOIN orders o ON rr.order_id = o.id
+		INNER JOIN products p on p.id = rr.product_id
+		LEFT JOIN product_serial s ON s.product_id = rr.product_id  AND s.order_id = o.id AND rr.serial = s.serial_number
+
+		LEFT JOIN  supplier sl ON rr.supplier_id = sl.id
+		LEFT JOIN  return_type rt ON rr.return_type_id = rt.id
+
+		WHERE
+		(
+					rr.docno LIKE '%".$obj['search']."%'
+					OR  o.id LIKE '%".$obj['search']."%'
+					OR  s.serial_number LIKE '%".$obj['search']."%'
+					OR  o.name LIKE '%".$obj['search']."%'
+		)
+				AND DATE_FORMAT(rr.modified_date,'%Y-%m-%d')  BETWEEN '".$obj['dateStart']."' AND '".$obj['dateEnd']."'
+
+
+			";
+
+			if(isset($obj['select_supplier']) && $obj['select_supplier'] != ''){
+				$sql = $sql." AND  sl.id = '".$obj['select_supplier']."' ";
+			}
+
+			if(isset($obj['select_return_type']) && $obj['select_return_type'] != ''){
+				$sql = $sql." AND  rt.id = '".$obj['select_return_type']."' ";
+			}
+
+		$re = $this->db->query($sql);
+		//print($sql);
+		return $re->result_array();
 	}
 
 	/*select *,sum(orders.total) as sum_total,sum(orders.quantity) as quantity,sum(orders.vat) as vat

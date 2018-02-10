@@ -59,5 +59,12 @@ define('SMTP_USER',                             'supachai@wisadev.com');		// you
 define('SMTP_PASS',                             'supachai');	// your smtp password
 define('MAIL_PATH',                             '/usr/sbin/sendmail');
 
+
+$date = @date("Y-m-d");
+define('DATE',$date);
+
+$datetime = @date("Y-m-d H:i:s");
+define('DATETIME',$datetime);
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

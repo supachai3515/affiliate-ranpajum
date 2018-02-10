@@ -5,8 +5,8 @@
             <?php foreach ($slider_list as $slider): ?>
                 <?php if ($slider['id'] < 5): ?>
                     <img src="<?php echo $slider['image'] ?>" alt="" title="#slider-direction-<?php echo $slider['id']; ?>" />
-                <?php endif ?>
-             <?php endforeach ?>
+                <?php endif ?>    
+             <?php endforeach ?>  
             </div>
             <?php foreach ($slider_list as $slider): ?>
                 <?php if ($slider['id'] < 5): ?>
@@ -32,9 +32,9 @@
                         </div>
                     </div>
 
-                <?php endif ?>
-             <?php endforeach ?>
-        </div>
+                <?php endif ?>    
+             <?php endforeach ?> 
+        </div> 
 </div>
 <!-- banner-area start-->
 <div class="banner-area space-top">
@@ -51,8 +51,8 @@
                         </div>
                     </div>
 
-                <?php endif ?>
-             <?php endforeach ?>
+                <?php endif ?>    
+             <?php endforeach ?> 
         </div>
      </div>
 </div>
@@ -63,7 +63,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3 col-lg-3 col-md-3">
-              <?php
+              <?php 
                  //left-sidebar
                  $this->load->view('template/left-sidebar');
              ?>
@@ -94,7 +94,7 @@
                                     </p>
                                 </div>
                             </div>
-                        <?php endif ?>
+                        <?php endif ?>    
                     <?php endforeach ?>
                     </div>
                 </div>
@@ -141,8 +141,8 @@
                         <div class="row">
                             <div class="tab-content">
                                 <!-- sports-tab-start -->
-                                <?php
-                                    $data['product_list']= $product_new;
+                                <?php 
+                                    $data['product_list']= $product_new; 
                                     $this->load->view('template/home-newarrival',$data);
                                 ?>
                                 <!-- sports-tab-end -->
@@ -167,8 +167,8 @@
                         <div class="row">
                             <div class="tab-content">
                                 <!-- sports-tab-start -->
-                                <?php
-                                    $data['product_list']= $product_hot;
+                                <?php 
+                                    $data['product_list']= $product_hot; 
                                     $this->load->view('template/home-popular',$data);
                                 ?>
                                 <!-- sports-tab-end -->
@@ -193,8 +193,8 @@
                         <div class="row">
                             <div class="tab-content">
                                 <!-- sports-tab-start -->
-                                <?php
-                                    $data['product_list']= $product_promotion;
+                                <?php 
+                                    $data['product_list']= $product_promotion; 
                                     $this->load->view('template/home-popular',$data);
                                 ?>
                                 <!-- sports-tab-end -->
@@ -203,6 +203,7 @@
                     </div>
                 </div>
                 <!-- new-arrival-tab-area end-->
+
                 <!-- new-arrival-tab-area start-->
                 <div class="product-tab-area-3">
                     <div class="row">
@@ -218,8 +219,8 @@
                         <div class="row">
                             <div class="tab-content">
                                 <!-- sports-tab-start -->
-                                <?php
-                                    $data['product_list']= $product_sale;
+                                <?php 
+                                    $data['product_list']= $product_sale; 
                                     $this->load->view('template/home-popular',$data);
                                 ?>
                                 <!-- sports-tab-end -->
@@ -232,5 +233,42 @@
             </div>
         </div>
     </div>
+</section>
+
+<section class="blog-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="area-title">
+                        <h2>โพสต์ล่าสุด</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="blog-carosul">
+                <?php foreach ($content_wordpress as $content): ?>
+                    
+               
+                    <div class="col-lg-4 col-md-4">
+                        <div class="single-recent-post">
+                            <div class="post-image">
+                                <a href="<?php echo $content['link'] ?>">
+                                    <img src="<?php echo $this->config->item('weburl').'content/wp-content/uploads/'.$content['image_file'] ?>" alt="">
+                                </a>
+                            </div>
+                            <div class="post-info">
+                                <h2 class="post-title">
+                                    <a href="<?php echo $content['link'] ?>"><?php echo $content['title'] ?></a>
+                                </h2>
+                                <p><?php echo substr(strip_tags($content['post_content']),0,150); ?><a href="<?php echo $content['link'] ?>"> [อ่านต่อ]
+                                </a></p>
+                            </div>
+                        </div>
+                    </div>
+                 
+                <?php endforeach ?>
+                </div>
+            </div>
+        </div>
 </section>
 <?php $this->load->view('template/logo'); ?>

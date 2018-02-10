@@ -8,7 +8,7 @@ class Slider extends CI_Controller {
 		$this->load->model('initdata_model');
 		$this->load->model('slider_model');
 		$this->load->library('pagination');
-		
+		session_start();
 		$this->is_logged_in();
 
 
@@ -51,7 +51,7 @@ class Slider extends CI_Controller {
 		$data['header'] = array('title' => 'slider | '.$this->config->item('sitename'),
 								'description' =>  'slider | '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
-								'keyword' =>  'bboyxcitehitec');
+								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 	}
 
@@ -67,7 +67,7 @@ class Slider extends CI_Controller {
 		$data['header'] = array('title' => 'slider | '.$this->config->item('sitename'),
 								'description' =>  'slider | '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
-								'keyword' =>  'bboyxcitehitec');
+								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 
 	}

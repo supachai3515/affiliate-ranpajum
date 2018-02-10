@@ -19,32 +19,33 @@ $config['base_url'] .= "://".$_SERVER['HTTP_HOST'];
 $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 
 //Config by user
-$config['short_sitename'] = "xcitehitec (เอ็กไซ ไฮเทค)";
-$config['sitename'] = "อะไหล่แมคบุ๊ค อะไหล่โน๊ตบุ๊ค อะไหล่ไอโฟน แบต จอ คีบอร์ด - xcitehitec";
-$config['tagline'] = "อะไหล่แมคบุ๊ค อะไหล่โน๊ตบุ๊ค อะไหล่ไอโฟน จอแมคบุ๊ค จอไอแมค จอไอโฟน  แบตเตอรี่โน๊ตบุ๊ค แบตเตอรี่แมคบุ๊ค แบตเตอรี่ไอโฟน  ครบวงจร";
-$config['author'] = "xcitehitec (เอ็กไซ ไฮเทค)";
-$config['keyword'] = "อะไหล่แมคบุ๊ค,อะไหล่โน๊ตบุ๊ค,อะไหล่ไอโฟน,จอแมคบุ๊ค,จอไอแมค,จอไอโฟน,แบตเตอรี่โน๊ตบุ๊ค,แบตเตอรี่แมคบุ๊ค,แบตเตอรี่ไอโฟน,ครบวงจร";
+$config['short_sitename'] = "Cyberbatt";
+$config['sitename'] = "รับซ่อม  Macbook iMac  iphone ipad ขายอะไหล่แท้ มือหนึ่งและมือสอง - cyberbatt";
+$config['tagline'] = "รับซ่อม  Macbook iMac  iphone ipad ขายอะไหล่แท้ มือหนึ่ง และมือสอง ซ่อมด่วนรอรับได้เลย เปลี่ยนชิพการ์ดจอ ลง OSX -ซ่อมหน้าจอ LED LCD เมนบอร์ดทุกอาการ";
+$config['url_img'] = "http://www.cyberbatt.com/";
+$config['no_url_img'] = "http://www.cyberbatt.com/uploads/no_image.jpg";
 
+$config['email_name'] = "cyberbatt";
+$config['email_owner'] = "cyberbatt_md@hotmail.com";
+$config['email_noreply'] = "cyberbatt.fix@gmail.com";
+$config['pass_mail_noreply'] = "0917824565";
+$config['weburl'] = "http://www.cyberbatt.com/";
+$config['line_id'] = "@cyberbatt";
 
-$config['url_img'] = "http://xcitehitec.com/";
-$config['no_url_img'] = "http://xcitehitec.com/uploads/no_image.jpg";
+$config['payment_transfer'] = '<h4>ธนาคารกรุงเทพ</h4>
+								<p>เลขที่บัญชี : <strong>087-3-00208-3</strong> บริษัท ไซเบอร์ แบต จำกัด</p>
+								<h4>ธนาคารไทยพาณิชย์</h4>
+								<p>เลขที่บัญชี : <strong>403-8-25867-1</strong> บริษัท ไซเบอร์ แบต จำกัด</p>
+								<h4>ธนาคารกสิกร</h4>
+								<p>เลขที่บัญชี : <strong>996-2-05800-8</strong> บริษัท ไซเบอร์ แบต จำกัด</p>
+								<h4>ธนากรุงไทย</h4>
+								<p>เลขที่บัญชี : <strong>981-7-80914-5</strong> บริษัท ไซเบอร์ แบต จำกัด</p>
 
-$config['email_name'] = "xcitehitec";
-$config['email_owner'] = "xcitehitec.cs@gmail.com";
-$config['email_noreply'] = "xcitehitec.cs@gmail.com";
-$config['pass_mail_noreply'] = "xc!t3!t3c";
-$config['weburl'] = "http://xcitehitec.com/";
-$config['line_id'] = "@xcitehitec";
-
-$config['payment_transfer'] = '<h4>ธนาคารไทยพาณิชย์</h4>
-								<p>เลขที่บัญชี : <strong>935-229047-8</strong> บริษัท เอ็กไซ ไฮเทค จำกัด</p>
 								';
 
 
-$config['address_own'] = '<h4>บริษัท เอ็กไซ ไฮเทค จำกัด</h4>
-															ห้อง 3R036-037 ชั้น 3 ตึกคอมโฆษะขอนแก่น ถนนศรีจันทร์ ตำบลในเมือง อำเภอเมือง จังหวัดขอนแก่น 40000<br>
-															โทร 02-7313565<br>
-															<strong>เลขประจำตัวผู้เสียภาษี xxxxxxxxxxxxx</strong>';
+//information
+$config['pre_page'] = "10";
 /*
 |--------------------------------------------------------------------------
 | Index File

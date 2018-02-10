@@ -36,28 +36,6 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
-/**** USER DEFINED CONSTANTS **********/
-
-define('ROLE_ADMIN',                            '1');
-define('ROLE_MANAGER',                         	'2');
-define('ROLE_EMPLOYEE',                         '3');
-
-define('SEGMENT',								2);
-
-//set time zone
-date_default_timezone_set("Asia/Bangkok");
-/************************** EMAIL CONSTANTS *****************************/
-
-define('EMAIL_FROM',                            'system@wisadev.com');		// e.g. email@example.com
-define('EMAIL_BCC',                            	'');		// e.g. email@example.com
-define('FROM_NAME',                             'Admin System');	// Your system name
-define('EMAIL_PASS',                            'system');	// Your email password
-define('PROTOCOL',                             	'smtp');				// mail, sendmail, smtp
-define('SMTP_HOST',                             'wisadev.com');		// your smtp host e.g. smtp.gmail.com
-define('SMTP_PORT',                             '25');					// your smtp port e.g. 25, 587
-define('SMTP_USER',                             'supachai@wisadev.com');		// your smtp user
-define('SMTP_PASS',                             'supachai');	// your smtp password
-define('MAIL_PATH',                             '/usr/sbin/sendmail');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

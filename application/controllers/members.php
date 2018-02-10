@@ -8,7 +8,7 @@ class Members extends CI_Controller {
 		$this->load->model('initdata_model');
 		$this->load->model('members_model');
 		$this->load->library('pagination');
-		
+		session_start();
 		$this->is_logged_in();
 
 
@@ -52,7 +52,7 @@ class Members extends CI_Controller {
 		$data['header'] = array('title' => 'members | '.$this->config->item('sitename'),
 								'description' =>  'members | '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
-								'keyword' =>  'bboyxcitehitec');
+								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 	}
 
@@ -70,7 +70,7 @@ class Members extends CI_Controller {
 		$data['header'] = array('title' => 'members | '.$this->config->item('sitename'),
 								'description' =>  'members | '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
-								'keyword' =>  'bboyxcitehitec');
+								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 
 	}
@@ -86,7 +86,7 @@ class Members extends CI_Controller {
 		$data['header'] = array('title' => 'members | '.$this->config->item('sitename'),
 								'description' =>  'members | '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
-								'keyword' =>  'bboyxcitehitec');
+								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 
 	}

@@ -8,7 +8,7 @@ class Producttype extends CI_Controller {
 		$this->load->model('initdata_model');
 		$this->load->model('producttype_model');
 		$this->load->library('pagination');
-		
+		session_start();
 		$this->is_logged_in();
 
 
@@ -51,7 +51,7 @@ class Producttype extends CI_Controller {
 		$data['header'] = array('title' => 'producttype| '.$this->config->item('sitename'),
 								'description' =>  'producttype| '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
-								'keyword' =>  'bboyxcitehitec');
+								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 	}
 
@@ -70,7 +70,7 @@ class Producttype extends CI_Controller {
 		$data['header'] = array('title' => 'producttype| '.$this->config->item('sitename'),
 								'description' =>  'producttype| '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
-								'keyword' =>  'bboyxcitehitec');
+								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 
 	}
@@ -86,7 +86,7 @@ class Producttype extends CI_Controller {
 		$data['header'] = array('title' => 'producttype| '.$this->config->item('sitename'),
 								'description' =>  'producttype| '.$this->config->item('tagline'),
 								'author' => $this->config->item('author'),
-								'keyword' =>  'bboyxcitehitec');
+								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 
 	}

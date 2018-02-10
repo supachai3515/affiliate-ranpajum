@@ -192,7 +192,7 @@ class Initdata_model extends CI_Model {
         return $productResult;
     }
 
-  public function get_sipping($shipping_id)
+    public function get_sipping($shipping_id)
 	{
         $weigth = 0;
 
@@ -247,6 +247,7 @@ class Initdata_model extends CI_Model {
 		}
 
     }
+
 
 }
 

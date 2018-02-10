@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ใบรับเข้า <?php echo $receive_data['doc_no']." ".$receive_data["do_ref"];?></title>
+
+		<!-- Bootstrap CSS -->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body ng-app="myApp" ng-controller="mainCtrl">
+	<div style="padding-top:30px;"></div>
+	<div class="container fix-container" ng-init="orderSenmailInit()">
+		<div class="row">
+
+            	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            		<img src="<?php echo $this->config->item('url_img');?>theme/img/logo/logo.png" style="width: 200px"/>
+            		<h4>บริษัท ไซเบอร์ แบต จำกัด</h4>
+			  		 2963 ซ.ลาดพร้าว 101/2 ถ.ลาดพร้าว คลองจั่น บางกะปิ กทม. 10240<br>
+			  		 โทร 02-7313565 มือถือ 081-7547565<br>
+			  		 <strong>เลขประจำตัวผู้เสียภาษี 0105553076314</strong>
+
+            	</div>
+            	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                    <h3>ใบรับเข้า<br>
+                    <?php if ($receive_data['is_vat'] == "0"): ?>
+                            <span style="font-size:14px"> (ไม่คำนวน vat) </span>
+                    <?php else: ?>
+                            <span style="font-size:14px"> (คำนวน vat) </span>
+                    <?php endif ?>
+
+                    <?php echo  $receive_data['doc_no'];?> </h3>
+                    <strong>วันที่รับเข้า <?php echo $receive_data['create_date']?></strong><br/>
+                    <strong>วันที่ออก <?php echo $receive_data['date_ref']?></strong><br/>
+                    <strong>Ref. #<?php echo $receive_data['id']?></strong><br/>
+            	</div>
+		</div>
+        <div class="row" style="padding-top:10px;">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <div class="panel panel-default height">
+                  <div class="panel-heading">ผู้จำหน่าย</div>
+                  <div class="panel-body">
+                      <?php if (isset($receive_data["supplier"]) && $receive_data["supplier"] !=""): ?>
+                      	<strong>Supplier: </strong><?php echo $receive_data["supplier"];?><br>
+											<?php endif; ?>
+											<?php if (isset($receive_data["warranty"]) && $receive_data["warranty"] !=""): ?>
+                      	<strong>Warranty: </strong><?php echo $receive_data["warranty"];?><br>
+											<?php endif; ?>
+											<?php if (isset($receive_data["comment"]) && $receive_data["comment"] !=""): ?>
+												<strong>หมายเหตุ: </strong><?php echo $receive_data["comment"];?><br>
+											<?php endif; ?>
+                  </div>
+              </div>
+          </div>
+		</div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4>รายละเอียดสินค้า</h4>
+            </div>
+        </div>
+	    <div class="row">
+	        <div class="col-md-12">
+	            <div class="panel panel-default">
+	                <div class="panel-body">
+	                    <div class="table-responsive">
+	                        <table class="table table-condensed">
+	                            <thead>
+	                                <tr>
+																		<td class="text-center product-id"><strong>SKU</strong></td>
+																		<td class=""><strong>Name</strong></td>
+																		<td class="text-center sumpricepernum"><strong>QTY</strong></td>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                            <?php
+															$vat = 0;
+															$total = 0;
+															$priceTotal =0;
+								$pro_detail = $this->db->query("SELECT p.sku, p.name, rd.qty, rd.qty, rd.vat, rd.total, rd.price FROM receive_detail rd LEFT JOIN products p ON(p.id = rd.product_id) WHERE rd.receive_id = '".$receive_data['id']."'")->result_array();
+								foreach ($pro_detail as $value): ?>
+								<?php
+								  $vat = $vat+ $value['vat'];
+									$total = $total+ $value['total'];
+									$priceTotal = $priceTotal + ($value["price"]*$value["qty"]);
+								 ?>
+	                            	 <tr>
+										<td class="text-center"><?php echo $value['sku'] ?></td>
+										<td><?php echo $value['name'] ?></td>
+                    <td class="text-center"><?php echo $value['qty'] ?></td>
+									  </tr>
+	                            <?php endforeach ?>
+
+
+
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+			<div class="row">
+	    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	    		<div class="panel panel-default">
+	    		 <div class="panel-heading">การชำระเงิน</div>
+	    		<div class="panel-body">
+	    		  <div class="row">
+	    		  	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+	    		  		<p class="text-center"><br></p>
+	    		  		<br>
+	    		  		<br>
+	    		  		<br>
+	    		  		<div class="row">
+	    		  			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+	    		  				<p class="text-center">_______________________<br>
+			    		  		ผู้จัดทำ
+			    		  		</p>
+	    		  			</div>
+	    		  			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+	    		  				<p class="text-center">_______________________<br>
+			    		  		วันที่
+			    		  		</p>
+	    		  			</div>
+	    		  		</div>
+
+	    		  	</div>
+	    		  	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+	    		  		<p class="text-center">ในนาม บริษัท ไซเบอร์ แบต จำกัด</p>
+	    		  		<br>
+	    		  		<br>
+	    		  		<br>
+	    		  		<div class="row">
+	    		  			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+	    		  				<p class="text-center">_______________________<br>
+			    		  		ผู้อนุมัติ
+			    		  		</p>
+	    		  			</div>
+	    		  			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+	    		  				<p class="text-center">_______________________<br>
+			    		  		วันที่
+			    		  		</p>
+	    		  			</div>
+	    		  		</div>
+
+	    		  	</div>
+	    		  </div>
+	    		</div>
+	    	</div>
+
+			</div>
+
+
+		<div class="row noprint">
+
+			<p class="text-center">
+			<button type="button" class="btn btn-primary" onClick="window.print()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> พิมพ์ใบชำระเงิน</button>
+			<a class="btn btn-success" href="<?php echo base_url();?>" role="button">ปิดหน้าต่างนี้</a>
+			</p>
+		</div>
+	</div>
+
+<style>
+
+.height {
+
+}
+
+.icon {
+    font-size: 47px;
+    color: #5CB85C;
+}
+
+.iconbig {
+    font-size: 77px;
+    color: #5CB85C;
+}
+
+.table > tbody > tr > .emptyrow {
+    border-top: none;
+}
+
+.table > thead > tr > .emptyrow {
+    border-bottom: none;
+}
+
+.table > tbody > tr > .highrow {
+    border-top: 3px solid;
+}
+.table-condensed>tbody>tr>td{
+	padding: 2px;
+}
+
+
+.lineover{
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  /* Fallback for non-webkit */
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.product-id{
+	width: 150px;
+}
+.sumprice{
+	width: 150px;
+}
+.sumpricepernum{
+	width: 80px;
+}
+  @media print {
+      a[href]:after {
+        content: "" !important;
+      }
+    }
+
+@media print {
+    .noprint {
+        display: none;
+    }
+}
+</style>
+		<!-- jQuery -->
+		<script src="//code.jquery.com/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@
                         <div class="col-sm-3 col-lg-3 col-md-3">
                             <div class="static-book">
                                 <div class="footer-title">
-                                    <h2>xcitehitec</h2>
+                                    <h2>cyberbatt</h2>
                                 </div>
                                 <div class="footer-menu">
                                     <ul>
@@ -37,30 +37,34 @@
                         <div class="col-sm-3 col-lg-3 col-md-3">
                              <div class="store-information-area">
                                 <div class="footer-title">
-                                    <h2>ข้อมูลของร้าน</h2>
+                                    <h2>รับสินค้าได้ที่</h2>
                                 </div>
                                 <div class="store-content">
                                     <ul>
-                                       <li><i class="fa fa-map-marker"></i> บริษัท เอ็กไซ ไฮเทค จำกัด<br>
-                                       ชั้น 3 ตึกคอมโฆษะขอนแก่น อำเภอเมือง ขอนแก่น 40000 </li>
-                                       <li><i class="fa fa-phone"></i> Mobile: 087-8809644 , 043-389438</li>
-                                       <li><i class="fa fa-comment"></i> LINE : @xcitehitec</li>
+                                       <li><i class="fa fa-map-marker"></i>
+                                       396 โซน B ซ.ลาดพร้าว 94 ถ.ศรีวรา พลับพลา วังทองหลาง กทม. 10310</li>
+                                       <li><i class="fa fa-phone"></i> Mobile: 091-7824565</li>
+                                       <li><i class="fa fa-comment"></i> LINE : @cyberbatt</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3 col-lg-3 col-md-3">
                             <div class="store-information-area">
-                                <div class="footer-title">
-                                    <h2>เวลาทำการ xcitehitec</h2>
-                                </div>
+                              <div class="footer-title">
+                                  <h2>ส่งสินค้าเคลมได้ที่</h2>
+                              </div>
+                              <div class="store-content">
+                                  <ul>
+                                      <li><i class="fa fa-map-marker"></i> CYBERBATT CO., LTD<br>
+                                      2963 ซ.ลาดพร้าว 101/2 ถ.ลาดพร้าว คลองจั่น บางกะปิ กทม. 10240</li>
+                                  </ul>
+                              </div>
                                 <div class="store-content">
                                     <ul>
-                                        <li><i class="fa fa-clock-o"></i> ทุกวัน จันทร์ - เสาร์ 9.30 - 19.00</li>
+                                        <li>เวลาทำการ Cyberbatt <br>
+                                          <i class="fa fa-clock-o"></i> ทุกวัน จันทร์ - เสาร์ 9.30 - 19.00 น.</li>
                                     </ul>
-                                </div>
-                                <div class="footer-payment">
-                                    <!--<img alt="" src="<?php echo base_url('theme');?>/img/payment-new.png"> -->
                                 </div>
                             </div>
                         </div>
@@ -104,8 +108,19 @@
         <script type="text/javascript" src="<?php echo base_url('theme');?>/fancyBox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
         <script type="text/javascript" src="<?php echo base_url('theme');?>/fancyBox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
         <script type="text/javascript" src="<?php echo base_url('theme');?>/fancyBox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+        <!-- image zoom js
+        ============================================ -->
+        <script src="<?php echo base_url('theme');?>/zoom-image/Drift.min.js"></script>
      <script type="text/javascript">
     $(document).ready(function() {
+        $(".thumbnail-img").click(function() {
+            $("#main-image").attr({
+                "src": $(this).attr("src"),
+                "data-zoom": $(this).attr("src")
+            });
+            $("#fancybox-link").attr("href",$(this).attr("src"));
+        });
         $(".fancybox-thumb").fancybox({
             prevEffect  : "none",
             nextEffect  : "none",
@@ -119,8 +134,24 @@
                 }
             }
         });
+        var demoTrigger = document.querySelector('#main-image');
+        var paneContainer = document.querySelector('.zoom-area');
+        if(demoTrigger && (demoTrigger != null)) {
+            new Drift(demoTrigger, {
+              paneContainer: paneContainer,
+              inlinePane: false,
+              handleTouch: false
+            });
+        }
     });
     </script>
+    <style>
+        .drift-open{
+            border: 1px solid #555;
+            left: -15px;
+            border-radius: 4px;
+        }
+    </style>
     <!-- jquery.scrollUp.min js
         ============================================ -->
     <script src="<?php echo base_url('theme');?>/js/jquery.scrollUp.min.js"></script>

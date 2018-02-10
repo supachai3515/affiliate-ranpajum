@@ -209,7 +209,7 @@ class Checkout extends CI_Controller {
 
 
 		    $this->db->trans_begin();
-		    $ref_order_id = md5("xcitehitec".date("YmdHis")."xcitehitec_gen");
+		    $ref_order_id = md5("cyberbatt".date("YmdHis")."cyberbatt_gen");
 		    $order_id="";
 		    if($quantity == 0){
 		    	redirect('cart','refresh');

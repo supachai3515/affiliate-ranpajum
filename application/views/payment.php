@@ -23,12 +23,12 @@
                         <p class="texe-danger">
                              <?php echo $txt_res;?>
                         </p>
-
+                         
                     <?php else: ?>
                         <p class="text-success">
                             <?php echo $txt_res;?>
                         </p>
-
+                         
                     <?php endif ?>
                 <?php endif ?>
                 <?php echo form_open_multipart('payment/save');?>
@@ -51,7 +51,10 @@
                         <div class="form-group">
                             <label for="textinput">เลือกธนาคาร</label>
                             <select  name="txtBank" id="inputBank" class="form-control" required="required">
+                                <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
+                                <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
                                 <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
+                                <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -85,16 +88,51 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="row bank-payment">
+                        <div class="col-sm-3">
+                            <img src="<?php echo base_url('theme'); ?>/img/bb.jpg" class="img-responsive img-rounded" alt="Image">
+                        </div>
+                        <div class="col-sm-9">
+                            <h4>ธนาคารกรุงเทพ</h4>
+                            <p>เลขที่บัญชี :087-3-00208-3
+                                <br> ชื่อบัญชี : บริษัท ไซเบอร์ แบต จำกัด
+                                <br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row bank-payment">
                         <div class="col-sm-3" style=" margin:0 auto;">
                             <img src="<?php echo base_url('theme'); ?>/img/thaipanit.jpg" class="img-responsive img-rounded" alt="Image">
                         </div>
                         <div class="col-sm-9">
                             <h4>ธนาคารไทยพาณิชย์</h4>
-                            <p>เลขที่บัญชี : 935-229047-8
-                                <br> ชื่อบัญชี : บริษัท เอ็กไซ ไฮเทค จำกัด
+                            <p>เลขที่บัญชี : 403-8-25867-1
+                                <br> ชื่อบัญชี : บริษัท ไซเบอร์ แบต จำกัด
                                 <br>
                         </div>
                     </div>
+                    <div class="row bank-payment">
+                        <div class="col-sm-3" style=" margin:0 auto;">
+                            <img src="<?php echo base_url('theme'); ?>/img/kban.jpg" class="img-responsive img-rounded" alt="Image">
+                        </div>
+                        <div class="col-sm-9">
+                            <h4>ธนาคารกสิกรไทย</h4>
+                            <p>เลขที่บัญชี : 996-2-05800-8
+                                <br> ชื่อบัญชี : บริษัท ไซเบอร์ แบต จำกัด
+                                <br>
+                        </div>
+                    </div>
+                    <div class="row bank-payment">
+                        <div class="col-sm-3" style=" margin:0 auto;">
+                            <img src="<?php echo base_url('theme'); ?>/img/ktb.png" class="img-responsive img-rounded" alt="Image">
+                        </div>
+                        <div class="col-sm-9">
+                            <h4>ธนาคารกรุงไทย</h4>
+                            <p>เลขที่บัญชี : 981-7-80914-5
+                                <br> ชื่อบัญชี : บริษัท ไซเบอร์ แบต จำกัด
+                                <br>
+                        </div>
+                    </div>
+
                     <div class="" style="padding-top:30px;">
                         <p><strong>แนบสลิปผ่านทางเว็บไซต์</strong></p>
                     </div>

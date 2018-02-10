@@ -38,7 +38,6 @@
                       <th>Email</th>
                       <th>Mobile</th>
                       <th>Menu Group</th>
-                      <th>Role</th>
                       <th class="text-center">Actions</th>
                     </tr>
                     <?php
@@ -53,7 +52,6 @@
                       <td><?php echo $record->email ?></td>
                       <td><?php echo $record->mobile ?></td>
                       <td><?php echo $record->menu_group_name ?></td>
-                      <td><?php echo $record->role ?></td>
                       <td class="text-center">
                           <a class="btn btn-sm btn-info" href="<?php echo base_url().'editOld/'.$record->userId; ?>"><i class="fa fa-pencil"></i></a>
                           <a class="btn btn-sm btn-danger deleteUser" href="#" data-userid="<?php echo $record->userId; ?>"><i class="fa fa-trash"></i></a>

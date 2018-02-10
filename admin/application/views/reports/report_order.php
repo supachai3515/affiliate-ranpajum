@@ -23,7 +23,7 @@
                     <option value="ใบลดหนี้" <?php if($resultpost['list_category'] == 'ใบลดหนี้'){echo "selected";}?>>ใบลดหนี้</option>
                 </select>
             </div>
-        
+
             <div class="form-group">
             	<span id="startDate" style="display:none"><?php echo DATE;?></span>
                 <label for="">วันที่เริ่มต้นค้นหา</label>
@@ -40,65 +40,129 @@
           	</div>
             <button type="submit" class="btn btn-primary">ค้นหา</button>
         </form>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
+        <?php if (empty($resultpost['checkbank']) == 1): ?>
+          <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th>วันที่ชำระเงิน</th>
+                          <th>รายชื่อธนาคาร</th>
+                          <th>สถานะ</th>
+                          <th class="text-right">จำนวนเงินที่โอนมาทั้งหมด</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                <?php  $sum_total = 0; ?>
+                <?php foreach ($selectDB as $row ): ?>
+                  <tr>
+                    <td><?php echo $row['inform_date_time'] ?></td>
+                    <td><?php echo $row['bank_name'] ?></td>
+                    <td>  <?php  switch ($row['order_status_id']) {
+                       case '1':
+                           echo '<strong class="label label-warning"> <i class="fa fa-clock-o" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                           break;
+                      case '2':
+                       echo '<strong class="label label-info"><i class="fa fa-spinner" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                      break;
+                      case '3':
+                      echo '<strong class="label label-danger"><i class="fa fa-pause-circle-o" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                      break;
+                          case '4':
+                              echo '<strong class="label label-success"><i class="fa fa-check" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                              break;
+                              case '5':
+                              echo '<strong class="label label-default"><i class="fa fa-ban" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                              break;
+
+                          default:
+                              echo '<strong class="label label-default"><i class="fa fa-repeat" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                              break;
+                      }?></td>
+                    <td  class="text-right"><?php echo number_format( $row['amount'],0); $sum_total += $row['amount']; ?></td>
+                  </tr>
+                <?php endforeach; ?>
+                  </tbody>
+                  <tfoot>
                     <tr>
-                        <th>ลำดับ</th>
-                        <?php if(empty($resultpost['checkbank']) != 1){$col = '4';?>
-                        <th>วันที่ชำระเงิน</th>
-                        <th>รายละเอียดใบสั่งซื้อ</th>
-                        <?php }else{$col = '2';}?>
-                        <th>รายชื่อธนาคาร</th>
-                        <th class="text-right">จำนวนเงินที่โอนมาทั้งหมด</th>
+                      <td>รวม</td>
+                      <td></td>
+                      <td></td>
+                      <td  class="text-right text-danger"><?php echo number_format( $sum_total,0); ?></td>
                     </tr>
-                </thead>
-                <tbody>
-					<?php
-                    $number = 1;
-                    ?>
-                    <?php if(count($selectDB) == 0){?>
+                  </tfoot>
+              </table>
+          </div>
+        <?php else: ?>
+          <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th>วันที่ชำระเงิน</th>
+                          <th>order</th>
+                          <th>invoice</th>
+                          <th>order name</th>
+                          <th>รายชื่อธนาคาร</th>
+                          <th>สถานะ</th>
+                          <th class="text-right">ยอดซื้อ</th>
+                          <th class="text-right">จำนวนเงินที่โอนมาทั้งหมด</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                <?php  $sum_total = 0;  $sum_amount = 0;?>
+                <?php foreach ($selectDB as $row ): ?>
+                  <tr>
+                    <td><?php echo $row['inform_date'] ?></td>
+                    <td><?php echo $row['order_id'] ?></td>
+                    <td><?php echo $row['invoice_docno'] ?></td>
+                    <td><?php echo $row['order_name'] ?></td>
+                    <td><?php echo $row['bank_name'] ?></td>
+                    <td>  <?php  switch ($row['order_status_id']) {
+                       case '1':
+                           echo '<strong class="label label-warning"> <i class="fa fa-clock-o" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                           break;
+                      case '2':
+                       echo '<strong class="label label-info"><i class="fa fa-spinner" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                      break;
+                      case '3':
+                      echo '<strong class="label label-danger"><i class="fa fa-pause-circle-o" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                      break;
+                          case '4':
+                              echo '<strong class="label label-success"><i class="fa fa-check" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                              break;
+                              case '5':
+                              echo '<strong class="label label-default"><i class="fa fa-ban" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                              break;
+
+                          default:
+                              echo '<strong class="label label-default"><i class="fa fa-repeat" aria-hidden="true"></i> '.$row['order_status_name'].'</strong><br/>';
+                              break;
+                      }?></td>
+                    <?php if ($row['total'] != $row['amount']): ?>
+                      <td class="text-right text-warning"><?php echo number_format( $row['total'],0);  $sum_total += $row['total'];?></td>
+                      <td  class="text-right text-warning"><?php echo number_format( $row['amount'],0); $sum_amount += $row['amount']; ?></td>
+                    <?php else: ?>
+                      <td class="text-right"><?php echo number_format( $row['total'],0);  $sum_total += $row['total'];?></td>
+                      <td  class="text-right"><?php echo number_format( $row['amount'],0); $sum_amount += $row['amount']; ?></td>
+                    <?php endif; ?>
+
+                  </tr>
+                <?php endforeach; ?>
+                  </tbody>
+                  <tfoot>
                     <tr>
-                        <td colspan="9"  class="text-center text-danger"><strong>ไม่มีข้อมูล</strong></td>
+                      <td>รวม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td  class="text-right text-danger"><?php echo number_format( $sum_total,0); ?></td>
+                      <td  class="text-right text-danger"><?php echo number_format( $sum_amount,0); ?></td>
                     </tr>
-                    <?php }else{
-                        $discountbill = 0;
-						$total = 0;
-                        foreach($selectDB as $dw):
-                        ?>
-                        <tr>
-                            <td class="text-center"><strong><?php echo $number;?></strong></td>
-                            <?php if (empty($resultpost['checkbank']) != 1): ?>
-                              <td><?php echo $dw['inform_date_time'];?></td>
-                              <td>
-                                <strong>เลขที่ใบสั่งซื้อ : </strong> # <?php echo $dw['order_id'] ?><br/>
-                                <strong>Invoice : </strong><?php echo $dw['invoice_docno'] ?><br/>
-                                <strong>Comment : </strong><?php echo $dw['comment'] ?><br/>
-                              </td>
-                            <?php endif; ?>
-                            <td><?php echo $dw['bank_name'];?></td>
-                            <td  class="text-right"><?php
-							echo number_format((empty($resultpost['checkbank']) != 1 ? $dw['amount'] : $dw['sum']),2);
-							?>
-                            </td>
-                        </tr>
-                        <?php
-						$total = $total + (empty($resultpost['checkbank']) != 1 ? $dw['amount'] : $dw['sum']);
-						$number++;?>
-                        <?php endforeach;?>
-                    <?php }?>
-                    <?php
-					if($this->input->get("method") == 'post'){
-						if(count($selectDB) != 0){?>
-							<tr>
-								<td  colspan="<?php echo $col;?>"  class="text-right"><strong>รวมยอดขายทั้งหมด</strong></td>
-								<td  class="text-right"><strong><?php echo number_format($total,2);?></strong> </td>
-							</tr>
-						<?php }
-					}?>
-                </tbody>
-            </table>
-        </div>
+                  </tfoot>
+              </table>
+          </div>
+        <?php endif; ?>
     </div>
     <!-- /.container-fluid -->
   </section>

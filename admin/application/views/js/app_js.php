@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	var app = angular.module("myApp", ['ui.bootstrap']);
+	var app = angular.module("myApp", ['angular-loading-bar','ui.bootstrap']);
 	app.controller("myCtrl", function($scope, $http, $uibModal, $log) {
 	    $scope.firstName = "John";
 	    $scope.lastName = "Doe";
@@ -15,7 +15,7 @@
 	         },
 
 	         data: { product_id : $scope.product_id}
-	           
+
 	        }).success(function(data) {
 	            $scope.items = data;
 	            //console.log(data);
@@ -25,7 +25,7 @@
 		  $scope.animationsEnabled = true;
 
 		  $scope.open = function (product_id) {
-		  	
+
 		    var modalInstance = $uibModal.open({
 		      animation: $scope.animationsEnabled,
 		      templateUrl: 'myModalContent.html',
@@ -67,7 +67,7 @@
 		            //console.log(data);
 		        });
 		    };
-	
+
 	});
 	// enter to tab
 	app.directive('enter',function(){
@@ -98,7 +98,7 @@
 	         },
 
 	         data: { product_id : $scope.product_id}
-	           
+
 	        }).success(function(data) {
 	            $scope.items_stock = data;
 	            //console.log(data);
@@ -123,4 +123,3 @@
 
 
 </script>
-	

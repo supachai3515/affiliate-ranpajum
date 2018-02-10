@@ -18,8 +18,6 @@
 
 		        }).success(function(data) {
 		             var product_receive_re = data;
-
-
 		             angular.forEach(product_receive_re,function(value,key){
 
 		             		var product_receive = {
@@ -42,6 +40,53 @@
 
 		$scope.intireceive();
 	  <?php endif ?>
+
+
+		$scope.compare_serial = function($receive_id) {
+
+			$http({
+				method: 'POST',
+				url: '<?php echo base_url("receive/get_compare_serial");?>',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				data: { "receive_id" : $receive_id }
+		 })
+		  .then(function onSuccess(response) {
+
+				if(response.data["message"]["qty"] == response.data["message"]["serial_number"]){
+					swal("Serial Number", "กำหนด Serial Number ครบแล้ว ( "+ response.data["message"]["serial_number"] +" of "+ response.data["message"]["qty"]+" )", "success")
+				}
+				else {
+					swal("Serial Number", "กำหนด Serial Number ไม่ครบ ( "+ response.data["message"]["serial_number"] +" of "+ response.data["message"]["qty"]+" )", "warning")
+				}
+				//swal("test");
+		  }).catch(function onError(response) {
+					swal("Error", response.statusText, "error")
+
+		  });
+		}
+
+		$scope.btnEdit = function($receive_id) {
+
+			$http({
+				method: 'POST',
+				url: '<?php echo base_url("receive/get_compare_serial");?>',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				data: { "receive_id" : $receive_id }
+		 })
+		  .then(function onSuccess(response) {
+
+				if(response.data["message"]["count_use"] == "0"){
+					window.location = "<?php echo base_url('receive/edit') ?>/"+$receive_id;
+				}
+				else {
+					swal("Serial Number", "มีการใช้ Serial Number แล้ว", "error");
+				}
+				//swal("test");
+		  }).catch(function onError(response) {
+					swal("Error", response.statusText, "error");
+
+		  });
+		}
 
 	  $scope.addReceive = function() {
 	  	 try {
@@ -157,7 +202,7 @@
 		      animation: $scope.animationsEnabled,
 		      templateUrl: 'myModalContent.html',
 		      controller: 'ModalInstanceCtrl',
-		      size: "",
+		      size: "lg",
 		      resolve: {
 		        items: function () {
 		        	var re_pa = {

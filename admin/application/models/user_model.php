@@ -1,20 +1,26 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 class User_model extends CI_Model
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
     /**
      * This function is used to get the user listing count
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function userListingCount($searchText = '')
+    public function userListingCount($searchText = '')
     {
         $searchText = $this->db->escape_like_str($searchText);
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role, BaseTbl.menu_group_id , mg.name menu_group_name');
         $this->db->from('tbl_users as BaseTbl');
-        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
-        $this->db->join('menu_group as mg', 'mg.menu_group_id =  BaseTbl.menu_group_id','left');
-        if(!empty($searchText)) {
+        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId', 'left');
+        $this->db->join('menu_group as mg', 'mg.menu_group_id =  BaseTbl.menu_group_id', 'left');
+        if (!empty($searchText)) {
             $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%'
                             OR  BaseTbl.name  LIKE '%".$searchText."%'
                             OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
@@ -27,6 +33,17 @@ class User_model extends CI_Model
         return count($query->result());
     }
 
+
+    public function get_menugroup_all()
+    {
+        $sql ="SELECT r.* , u1.name create_by_name , u2.name  modified_by_name FROM  menu_group r
+              LEFT JOIN tbl_users u1 ON u1.userId = r.create_by
+              LEFT JOIN tbl_users u2 ON u2.userId = r.modified_by WHERE 1=1 AND r.menu_group_id != 1";
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        return $result;
+    }
+
     /**
      * This function is used to get the user listing count
      * @param string $searchText : This is optional search text
@@ -34,17 +51,17 @@ class User_model extends CI_Model
      * @param number $segment : This is pagination limit
      * @return array $result : This is result
      */
-    function userListing($searchText = '', $page, $segment)
+    public function userListing($searchText = '', $page, $segment)
     {
         $searchText = $this->db->escape_like_str($searchText);
-    		$page = $this->db->escape_str($page);
-    		$segment = $this->db->escape_str($segment);
+        $page = $this->db->escape_str($page);
+        $segment = $this->db->escape_str($segment);
 
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role, BaseTbl.menu_group_id, mg.name menu_group_name');
         $this->db->from('tbl_users as BaseTbl');
-        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
-        $this->db->join('menu_group as mg', 'mg.menu_group_id =  BaseTbl.menu_group_id','left');
-        if(!empty($searchText)) {
+        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId', 'left');
+        $this->db->join('menu_group as mg', 'mg.menu_group_id =  BaseTbl.menu_group_id', 'left');
+        if (!empty($searchText)) {
             $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%'
                             OR  BaseTbl.name  LIKE '%".$searchText."%'
                             OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
@@ -63,7 +80,7 @@ class User_model extends CI_Model
      * This function is used to get the user roles information
      * @return array $result : This is result of the query
      */
-    function getUserRoles()
+    public function getUserRoles()
     {
         $this->db->select('roleId, role');
         $this->db->from('tbl_roles');
@@ -79,13 +96,13 @@ class User_model extends CI_Model
      * @param {number} $userId : This is user id
      * @return {mixed} $result : This is searched result
      */
-    function checkEmailExists($email, $userId = 0)
+    public function checkEmailExists($email, $userId = 0)
     {
         $this->db->select("email");
         $this->db->from("tbl_users");
         $this->db->where("email", $email);
         $this->db->where("isDeleted", 0);
-        if($userId != 0){
+        if ($userId != 0) {
             $this->db->where("userId !=", $userId);
         }
         $query = $this->db->get();
@@ -98,7 +115,7 @@ class User_model extends CI_Model
      * This function is used to add new user to system
      * @return number $insert_id : This is last inserted id
      */
-    function addNewUser($userInfo)
+    public function addNewUser($userInfo)
     {
         $this->db->trans_start();
         $this->db->insert('tbl_users', $userInfo);
@@ -115,12 +132,12 @@ class User_model extends CI_Model
      * @param number $userId : This is user id
      * @return array $result : This is user information
      */
-    function getUserInfo($userId)
+    public function getUserInfo($userId)
     {
         $this->db->select('userId, name, email, mobile, roleId, menu_group_id');
         $this->db->from('tbl_users');
         $this->db->where('isDeleted', 0);
-		    $this->db->where('roleId !=', 1);
+        $this->db->where('roleId !=', 1);
         $this->db->where('userId', $userId);
         $query = $this->db->get();
 
@@ -133,12 +150,12 @@ class User_model extends CI_Model
      * @param array $userInfo : This is users updated information
      * @param number $userId : This is user id
      */
-    function editUser($userInfo, $userId)
+    public function editUser($userInfo, $userId)
     {
         $this->db->where('userId', $userId);
         $this->db->update('tbl_users', $userInfo);
 
-        return TRUE;
+        return true;
     }
 
 
@@ -148,7 +165,7 @@ class User_model extends CI_Model
      * @param number $userId : This is user id
      * @return boolean $result : TRUE / FALSE
      */
-    function deleteUser($userId, $userInfo)
+    public function deleteUser($userId, $userInfo)
     {
         $this->db->where('userId', $userId);
         $this->db->update('tbl_users', $userInfo);
@@ -161,7 +178,7 @@ class User_model extends CI_Model
      * This function is used to match users password for change password
      * @param number $userId : This is user id
      */
-    function matchOldPassword($userId, $oldPassword)
+    public function matchOldPassword($userId, $oldPassword)
     {
         $this->db->select('userId, password');
         $this->db->where('userId', $userId);
@@ -170,8 +187,8 @@ class User_model extends CI_Model
 
         $user = $query->result();
 
-        if(!empty($user)){
-            if(verifyHashedPassword($oldPassword, $user[0]->password)){
+        if (!empty($user)) {
+            if (verifyHashedPassword($oldPassword, $user[0]->password)) {
                 return $user;
             } else {
                 return array();
@@ -186,7 +203,7 @@ class User_model extends CI_Model
      * @param number $userId : This is user id
      * @param array $userInfo : This is user updation info
      */
-    function changePassword($userId, $userInfo)
+    public function changePassword($userId, $userInfo)
     {
         $this->db->where('userId', $userId);
         $this->db->where('isDeleted', 0);

@@ -5,8 +5,8 @@
         var maxD = $("#endDate").html();
 		var startDateTextBox = $('#dateStart');
 		var endDateTextBox = $('#dateEnd');
-	
-		startDateTextBox.datepicker({ 
+
+		startDateTextBox.datepicker({
 			format: "yyyy-mm-dd",
 			language: "th",
 			autoclose: true,
@@ -31,7 +31,7 @@
 				endDateTextBox.datetimepicker('option', 'minDate', startDateTextBox.datetimepicker('getDate') );
 			}
 		});
-		endDateTextBox.datepicker({ 
+		endDateTextBox.datepicker({
 			format: "yyyy-mm-dd",
 			language: "th",
 			autoclose: true,
@@ -57,6 +57,3 @@
 			}
 		});
 </script>
-
-
-	

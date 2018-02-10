@@ -24,11 +24,14 @@
             <button type="submit" class="btn btn-primary">ค้นหา</button>
         </form>
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ลำดับ</th>
+                        <th>sku</th>
                         <th>ชื่อสินค้า</th>
+                        <th>ยี่ห้อ</th>
+                        <th>ประเภทยี</th>
                         <th class="text-right">จำนวน</th>
                         <th class="text-right">ราคาvat</th>
                         <th class="text-right">ราคาเฉลี่ย</th>
@@ -44,34 +47,41 @@
                         <td colspan="9"  class="text-center text-danger"><strong>ไม่มีข้อมูล</strong></td>
                     </tr>
                     <?php }else{
-                        $discountbill = 0;
-						$total = 0;
+                      $sum_total = 0;
+                      $avgtotal = 0;
+                      $ordetailsVAC = 0;
+                      $ordetailsQTY = 0;
                         foreach($selectDB as $dw):
                         ?>
                         <tr>
                             <td><strong><?php echo $number;?></strong></td>
-                              <td>
-                                <strong>sku : </strong><?php echo $dw['sku'] ?><br/>
-                                <strong>ประเภท : </strong><?php echo $dw['typename'] ?><br/>
-                                <strong>ยี่ห้อ : </strong><?php echo $dw['brandname'] ?><br/>
-                                <strong>ชื่อสินค้า : </strong><?php echo $dw['proname'] ?><br/>
-                              </td>
+                            <td><?php echo $dw['sku'] ?></td>
+                            <td><?php echo $dw['proname'] ?></td>
+                            <td><?php echo $dw['typename'] ?></td>
+                            <td><?php echo $dw['brandname'] ?></td>
                             <td class="text-right"><?php echo $dw['ordetailsQTY'];?></td>
                             <td class="text-right"><?php echo number_format($dw['ordetailsVAC'],2);?></td>
                             <td class="text-right"><?php echo number_format($dw['avgtotal'],2);?></td>
                             <td class="text-right"><?php echo number_format($dw['sum_total'],2);?></td>
                         </tr>
                         <?php
-						$total = $total + $dw['sum_total'];
-						$number++;?>
+              						$sum_total = $sum_total + $dw['sum_total'];
+                          $avgtotal = $avgtotal + $dw['avgtotal'];
+                          $ordetailsVAC = $ordetailsVAC + $dw['ordetailsVAC'];
+                          $ordetailsQTY = $ordetailsQTY + $dw['ordetailsQTY'];
+              						$number++;
+                          ?>
                         <?php endforeach;?>
                     <?php }?>
                     <?php
 					if($this->input->get("method") == 'post'){
 						if(count($selectDB) != 0){?>
 							<tr>
-								<td colspan="5"  class="text-right"><strong>รวมยอดขายทั้งหมด</strong></td>
-								<td class="text-right"><strong> <?php echo number_format($total,2);?></strong></td>
+								<td colspan="5"  class="text-center"><strong>รวมยอดขายทั้งหมด</strong></td>
+                <td class="text-right"><strong> <?php echo number_format($ordetailsQTY,0);?></strong></td>
+                <td class="text-right"><strong> <?php echo number_format($ordetailsVAC,2);?></strong></td>
+                <td class="text-right"><strong> <?php echo number_format($avgtotal,2);?></strong></td>
+								<td class="text-right"><strong> <?php echo number_format($sum_total,2);?></strong></td>
 							</tr>
                         <?php }?>
 					<?php }?>

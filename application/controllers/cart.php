@@ -9,7 +9,7 @@ class Cart extends CI_Controller
         $this->load->model('initdata_model');
         $this->load->library('pagination');
         $this->load->model('cart_model');
-        
+        session_start();
     }
 
     public function index()

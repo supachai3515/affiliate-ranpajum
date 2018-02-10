@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?php echo base_url();?>">B-Boy xcitehitec</a>
+        <a class="navbar-brand" href="<?php echo base_url();?>">B-Boy Computer</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">

@@ -1,20 +1,9 @@
 @media (min-width: 992px){
-    .flex-70{
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 60%;
-    flex: 0 0 60%;
-    }
-    .flex-40{
-        -webkit-box-flex: 0;
-        -ms-flex: 0 0 40%;
-        flex: 0 0 40%;
-    }
     .flex-100{
-        -webkit-box-flex: 0;
-        -ms-flex: 0 0 100%;
-        flex: 0 0 100%;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
     }
-
 }
 .header{
   position: relative;
@@ -40,27 +29,28 @@
 .header a:hover{
   text-decoration: none;
 }
-.container{margin: 20px auto 40px;}
+.container{margin: 20px auto 100px;}
 .submit-btn{margin-top: 50px;}
-.main-footer{margin: 0 10px;}
 .flex-warp{
 	display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
-.flex{ width: 100%; }
-.flex,.table-wrap{
-	padding: 15px;
+.flex{
+  margin-bottom: 20px;
+  width: 100%;
 }
 .box-inner{
-	padding: 10px;
+  margin-bottom: 40px;
+	padding: 20px;
 	background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(10,16,20,.24),0 0 2px rgba(10,16,20,.12);
 }
-
 .table th { text-align: center;}
 .del-icon{
   cursor: pointer;
@@ -68,3 +58,178 @@
 }
 .swal2-modal .swal2-buttonswrapper { margin-top: 40px;}
 .swal2-buttonswrapper button{ margin: 0 10px;}
+.checkbox input[type=checkbox]{ cursor: pointer;}
+.input-group .form-control:first-child{
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.add_order_box {
+  margin-top: 50px;
+}
+
+/*Select Products*/
+.order-title {
+  margin-bottom: 35px;
+  text-align: center;
+  padding: 10px 5px;
+  background-color: #eceff1;
+}
+.prodiucts_list {
+  margin-bottom: 30px;
+}
+.prodiucts_list ul {
+  margin-left: 30px;
+}
+.prodiucts_list ul  li{
+  padding: 10px;
+  margin: 0 0 10px 30px;
+  list-style-type: none;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(10,16,20,.24),0 0 2px rgba(10,16,20,.12);
+}
+.prodiucts_list .rodiucts_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-pack: distribute;
+  justify-content: start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.prodiucts_detail{padding-left: 30px;}
+
+/*Order Complete*/
+.order_box:not(:last-child) {
+  margin-bottom: 40px
+}
+.header_order {
+  margin-bottom: 30px;
+}
+.order_detail {
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(10,16,20,.24),0 0 2px rgba(10,16,20,.12);
+  margin-bottom: 10px;
+}
+.order_title {
+  margin-bottom: 30px;
+  padding-left: 10px;
+  border-left: 3px solid #1779ba;
+  overflow: hidden;
+}
+.table-order tbody td:first-child:not(:last-child) {
+  font-weight: bold;
+  text-align: right;
+}
+.table-order tr:last-child td {
+  text-align: right;
+}
+.table-order .total-num { font-size: 18px;}
+.table-order .total-num span {
+  font-weight: bold;
+}
+
+/*Order Step*/
+.step {
+    margin: 20px auto;
+    background: #fff;
+}
+
+    .step .nav-tabs {
+        position: relative;
+        margin: 40px auto;
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+
+    .step > div.step-inner {
+        position: relative;
+    }
+
+.connecting-line {
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 70%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+
+.step  span.round-tab {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+.step  span.round-tab i{
+    color:#555555;
+}
+.step li.active span.round-tab {
+    background: #fff;
+    border: 2px solid #5bc0de;
+
+}
+.step li.active span.round-tab i{
+    color: #5bc0de;
+}
+
+.step .nav-tabs > li {
+    width: 33.333%;
+    text-align: center;
+}
+
+.step .nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+    cursor: default;
+}
+
+.step .tab-pane {
+    position: relative;
+    padding-top: 50px;
+}
+
+.step h3 {
+    margin-top: 0;
+}
+
+@media( max-width : 585px ) {
+
+    .step {
+        width: 90%;
+        height: auto !important;
+    }
+
+    .step span.round-tab {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .step .nav-tabs > li a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+}

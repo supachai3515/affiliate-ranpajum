@@ -75,6 +75,7 @@
                           <a class="btn btn-sm btn-primary" href="<?php echo base_url().'purchase_order/transfer_save/'.$record->id; ?>"><i class="fa fa-exchange" aria-hidden="true"></i></a>
                         <?php endif; ?>
                           <a class="btn btn-sm btn-warning" href="<?php echo base_url().'purchase_order/edit/'.$record->id; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                          <a class="btn btn-sm btn-warning" target="_blank" href="<?php echo base_url().'purchase_order/edit_view/'.$record->id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
                           <a class="btn btn-sm btn-info" target="_blank" href="<?php echo base_url().'purchase_order/view/'.$record->id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
                       </td>
                     </tr>
