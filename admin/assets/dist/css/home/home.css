@@ -1,0 +1,70 @@
+@media (min-width: 992px){
+    .flex-70{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
+    }
+    .flex-40{
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 40%;
+        flex: 0 0 40%;
+    }
+    .flex-100{
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+    }
+
+}
+.header{
+  position: relative;
+  background-color: #333333;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+.header h1{
+  display: inline-block;
+  margin: 0;
+  padding: 20px 0;
+}
+.navbar-right{
+  position: absolute;
+  right: 30px;
+  top: 15px;
+}
+.navbar-right li a:hover{background: #333;}
+.header a{
+  color: #fff;
+}
+.header a:hover{
+  text-decoration: none;
+}
+.container{margin: 20px auto 40px;}
+.submit-btn{margin-top: 50px;}
+.main-footer{margin: 0 10px;}
+.flex-warp{
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.flex{ width: 100%; }
+.flex,.table-wrap{
+	padding: 15px;
+}
+.box-inner{
+	padding: 10px;
+	background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+
+.table th { text-align: center;}
+.del-icon{
+  cursor: pointer;
+  font-size: 17px;
+}
+.swal2-modal .swal2-buttonswrapper { margin-top: 40px;}
+.swal2-buttonswrapper button{ margin: 0 10px;}

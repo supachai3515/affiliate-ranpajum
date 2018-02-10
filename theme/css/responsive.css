@@ -1,0 +1,507 @@
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1169px) {
+.search-form input{}
+.main-menu ul li ul.mega-menu {
+  min-width: 690px;
+}
+.form-element input {
+  width: 160px;
+}
+.footer-title h2 {
+  font-size: 15px;
+}
+.single-product-bought .image-area {
+  width: 38%;
+}
+.single-service h2 {
+  font-size: 14px;
+}
+.single-service p {
+  font-size: 12px;
+}
+.home-3 .ratting,.shop .ratting {
+  float: left;
+}
+.contuct-us-form-area .form-element input {
+  width: 207px;
+}
+.layer-3 img {
+  left: 61%;
+}
+.title-5 {
+  right: 2%;
+  top: 30%;
+}
+.title-head {
+  font-size: 28px;
+}
+.sub-title {
+  font-size: 16px;
+}
+.layer-5 h1 {
+  font-size: 24px;
+}
+.title-desc {
+  margin-top: 10px !important;
+}
+.s-layer-3 img,.s-layer-4 {
+  display: none;
+}
+
+
+
+
+
+
+}
+
+
+ 
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991px) {
+.search-form input {
+  width: 285px;
+}
+.shopping-cart ul li {
+  display: inline-block;
+  float: none;
+}
+.shopping-cart ul {
+  text-align: center;
+}
+.shopping-cart {
+  margin-top: 20px;
+}
+.main-menu-area {
+  display: none;
+}
+.header-bottom-area {
+  margin-top: 30px;
+}
+.left-sidebar .single-product-bought .image-area {
+  width: 100%;
+}
+.left-sidebar .single-product-bought .product-info {
+  margin-left: 0;
+  margin-top: 10px;
+  width: 100%;
+}
+.top-sell-product {
+  margin-top: 15px;
+}
+.top-sell-product-area,.add-banner-slider-area,.tag-area,.special-product-area {
+  margin-bottom: 20px;
+}
+.left-sidebar .single-product-bought {
+  margin-bottom: 15px;
+}
+.tag {
+  margin-top: 15px;
+}
+.area-title h2 {
+  font-size: 18px;
+}
+.tag ul li a {
+  margin: 3px 0px 0 0;
+}
+.left-sidebar .post-info {
+  padding: 10px 0px 0;
+}
+.left-sidebar h2.post-title {
+  color: #444;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.left-sidebar .post-info p {
+  padding-bottom: 0px;
+}
+.left-sidebar .special-product-area .special-product,.left-sidebar .recent-post {
+  margin-top: 15px;
+}
+.content {
+  background: #f1f1f1;
+}
+.text-content {
+  background: transparent;
+}
+.banner-area {
+  margin: 15px 0;
+}
+.single-product-bought .image-area {
+  width: 36%;
+}
+.single-product-bought .product-info {
+  width: 58%;
+}
+.subscribe p {
+  margin: 0px 0px 10px 0px;
+}
+.home-3 .header-bottom-area {
+  padding: 0 0 6px;
+}
+.home-3 .header-container {
+  padding-bottom: 0;
+}
+.home-3 .slider-category-area {
+  margin-top: 25px;
+}
+.home-3 .top-sell-product-area{
+  margin-top: 11px;
+}
+.home-3 .area-title h2 {
+  font-size: 16px;
+}
+.home-3 .tab-menu ul li a {
+  padding: 6px 13px;
+}
+.form-content button.login {
+  margin-top: 40px;
+}
+.order-step ul li span {
+  padding: 13px 10px 15px 30px;
+}
+.shere-button a {
+  padding: 6px 8px;
+}
+.product-description-area .thumnail-image ul.tab-menu li {
+  float: left;
+  margin-right: 0;
+  width: 25%;
+}
+.contuct-us-form-area .form-content {
+  float: none;
+  padding-right: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+.map-area {
+  width: 100%;
+  margin-top: 10px;
+}
+.contuct-us-form-area .form-element input {
+  width: 320px;
+}
+.postinfo-wrapper .date-social {
+  width: 13.5%;
+}
+.blog .blog-content-area .post-info {
+  width: 86.5%;
+}
+.hedding .blog-hedding {
+  font-size: 24px;
+}
+.left-sidebar h2.post-title {
+  font-size: 12px;
+}
+.left-sidebar .comments .post-info {
+  line-height: 13px;
+  width: 75%;
+  padding-top:0;
+}
+.left-sidebar .comments .post-thumb {
+  margin-right: 5px;
+}
+.archives-area ul li {
+  font-size: 12px;
+}
+.category-title h2 {
+  padding: 15px 12px 15px 10px;
+}
+
+.title1 {
+  font-size: 24px;
+  line-height: 28px;
+}
+.home-3 .title2 span {
+  font-size: 14px;
+  padding: 5px 7px;
+}
+.home-3 .layer-2,.home-3 .layer-3,.s-layer-3,.s-layer-4,.s-layer-4,.layer-5 {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+}
+
+ 
+/* small mobile :320px. */
+@media (max-width: 767px) {
+.main-menu-area,.header-middle-area,.static-right-social-area{
+  display: none;
+}
+.top-menu ul {
+  text-align: center;
+}
+.top-menu ul li a {
+   padding: 5px 5px;
+}
+.search-form {
+  float: none;
+  margin: 10px 0;
+  text-align: center;
+}
+.search-form input {
+  width: 214px;
+}
+.logo {
+  margin: 20px 0;
+  text-align: center;
+}
+.shopping-cart ul li {
+  float: none;
+}
+.search-box {
+  margin-bottom: 25px;
+}
+.shopping-cart ul {
+  text-align: center;
+}
+.top-sell-product {
+  margin-top: 15px;
+}
+.left-sidebar .single-product-bought {
+  margin-bottom: 15px;
+}
+.add-banner-slider-area,.tag-area {
+  margin-bottom: 20px;
+}
+.tag {
+  margin-top: 10px;
+}
+.tag ul li a {
+  margin: 5px 0 0 0;
+}
+.special-product-area .special-product {
+  margin-top: 15px;
+}
+.left-sidebar .post-info p {
+  padding-bottom: 0;
+}
+.left-sidebar .recent-post-area {
+  margin-bottom: 20px;
+}
+.banner-area {
+  margin: 20px 0;
+}
+.banner-area .col-sm-4.col-lg-4.col-md-4:nth-child(2) .single-banner{
+	margin: 10px 0;
+}
+.tab-menu ul li {
+  font-size: 13px;
+  margin: 0 2px 0 0;
+  padding: 0 12px 0 3px;
+}
+.area-title h2 {
+  font-size: 13px;
+}
+.content {
+  background: #f1f1f1;
+}
+.text-content {
+  background: transparent;
+  height: auto;
+  margin: 0;
+  padding: 0 5px;
+}
+.latest-news-area {
+  margin: 0 0 25px;
+  text-align: center;
+}
+.latest-news-title {
+  width: 270px;
+}
+.subscribe p {
+  font-size: 16px;
+  margin: 0;
+}
+.form-element input {
+  margin: 5px 0 0;
+}
+.form-element button{
+	margin-top: 5px;
+}
+.currency, .language{
+	display: none;
+}
+.add-banner-carsuol img,.single-banner img,.logo-brand-carosul img{width: 100%;}
+.home-3 .service-area {
+  display: none;
+}
+.home-3 .slider-area {
+  margin-bottom: 20px;
+}
+.home-3 .tab-menu ul li a {
+  font-size: 11px;
+  padding: 4px 3px;
+}
+.home-3 .header-bottom-area {
+  padding: 0;
+}
+.home-3 .header-container {
+  padding-bottom: 0;
+}
+.blog-carosul .post-image img {
+  width: 100%;
+}
+.thumnail-image ul.tab-menu li {
+  float: left;
+  margin-right: 0;
+  width: 25%;
+}
+.shere-button a {
+  padding: 6px 4px;
+}
+.product-overview {
+  margin-top: 20px;
+}
+.product-overview-tab-menu ul li {
+  margin-right: 10px;
+}
+.product-overview-tab-menu ul li a {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 10px 0;
+}
+.product-overview .tab-content {
+  padding-top: 10px;
+}
+.other-product-area {
+  margin-top: 20px;
+}
+.breadcrumb ul li i {
+  margin: 0 10px;
+}
+.comment-rating i {
+  float: left;
+}
+.table-responsive {
+  border: 0 none;
+}
+.contuct-us-form-area .form-content {
+  float: none;
+  padding-right: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+.map-area {
+  width: 100%;
+  margin-top: 10px;
+}
+.contuct-us-form-area .form-element input {
+  width: 320px;
+}
+.contuct-us-form-area .form-element {
+  float: none;
+}
+.contuct-us-form-area .form-element input {
+  width: 100%;
+}
+.contuct-us-form-area .form-element.text-area textarea {
+  height: 8em;
+  width: 100%;
+}
+#googleMap{height: 300px !important;}
+.page-heading span {
+  display: block;
+  float: none;
+}
+.cart-button a.standard-checkout {
+  display: inline-block;
+  float: none;
+  margin-top: 10px;
+}
+.error-content h1 {
+  font: 600 16px/20px "Open Sans",sans-serif;
+}
+.error-content p {
+  font: 600 13px/20px "Open Sans",sans-serif;
+  margin-bottom: 10px;
+}
+.error-content h3 {
+  margin-bottom: 0;
+}
+.error-content button {
+  margin-top: 10px;
+}
+.error-content .buttons {
+  padding: 30px 0 3px;
+}
+.postinfo-wrapper .date-social {
+  width: 25%;
+}
+.blog .blog-content-area .post-info {
+  width: 75%;
+}
+.hedding .blog-hedding {
+  font-size: 16px;
+}
+.hedding {
+  margin: 0 0 17px;
+}
+.meta-small {
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+.button-exclusive a {
+  font-size: 14px;
+}
+.left-sidebar.right {
+  border-left: 0 none;
+  padding-left: 0;
+}
+.post-decrip blockquote {
+  padding: 10px;
+}
+.post-decrip p {
+  margin-bottom: 0;
+}
+.left-sidebar.left {
+  border-right: 0 none;
+  padding-right: 0;
+}
+.our-team {
+  margin: 30px 0;
+}
+.preview-2 .nivo-controlNav {
+  bottom: 40px;
+}
+.slider-content{
+	display:none;
+}
+.nivo-directionNav a {
+  top: 35%;
+}
+.nivo-controlNav {
+  padding: 0;
+}
+.home-3 .layer-5,.home-3 .s-layer-3,.home-3 .s-layer-4,.home-3 .layer-2,.home-3 .layer-3 {
+  display: none;
+}
+
+
+
+
+
+
+ 
+}
+ 
+/* Large Mobile :480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.search-form input {
+  width: 360px;
+}
+.error-content button {
+  margin-top: 0;
+}
+
+ 
+}
+ 
